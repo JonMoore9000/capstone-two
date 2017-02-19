@@ -1,0 +1,20 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Raleway', 'sans-serif';
+}
+
+.name {
+	font-size: 20px;
+}
+
+.date {
+	font-family: Calibri;
+}
+
+.eachOne {
+	border: 2px solid black;
+	margin-bottom: 10px;
+}

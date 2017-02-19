@@ -1,0 +1,19 @@
+{
+  "name": "capstone-project-two",
+  "version": "1.0.0",
+  "description": "second capstone project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonMoore9000/capstone-two.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonMoore9000/capstone-two/issues"
+  },
+  "homepage": "https://github.com/JonMoore9000/capstone-two#readme"
+}
