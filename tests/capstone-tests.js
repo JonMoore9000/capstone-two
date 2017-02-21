@@ -8,7 +8,7 @@ const {app, runServer, closeServer} = require('../server');
 // GET TEST
   describe('GET endpoint', function() {
 
-    it('should return games api data', function() {
+    it('should get 200 status and HTML', function() {
       
       let res;
       return chai.request(app)

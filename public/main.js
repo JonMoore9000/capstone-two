@@ -28,16 +28,13 @@ function getData(callback, searchItem) {
 function displayData(apiResults) {
 	var apiElement = '';
 	apiElement = apiResults.map(function(item) {
-		console.log(item.cover);
-
-		var coverImage = item.cover.url;
+		//console.log(item.cover);
 
     	var d = new Date(item.first_release_date*1000);
     	timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
 		return '<div class="eachOne">' +'<p class="name">' + item.name + '</p>' 
-		+ '<p class="date">' + timeStamp + '</p>'
-		+ '<image class="cover" src="' + coverImage + '">' + '</div>';
+		+ '<p class="date">' + timeStamp + '</p>';
 	});
 	$('.js-results').html(apiElement);
 };
