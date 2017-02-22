@@ -6,6 +6,10 @@ body {
 	font-family: 'Raleway', 'sans-serif';
 }
 
+.favListBtn {
+	text-align: center;
+}
+
 .name {
 	font-size: 20px;
 }
@@ -17,4 +21,16 @@ body {
 .eachOne {
 	border: 2px solid black;
 	margin-bottom: 10px;
+}
+
+.eachOne:hover {
+	border: 2px solid red;
+}
+
+.invisible {
+	display: none;
+}
+
+.favList {
+	display: block;
 }

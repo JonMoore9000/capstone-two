@@ -28,10 +28,18 @@ function getData(callback, searchItem) {
 function displayData(apiResults) {
 	var apiElement = '';
 	apiElement = apiResults.map(function(item) {
-		//console.log(item.cover);
+		//console.log(item.first_release_date);
 
     	var d = new Date(item.first_release_date*1000);
     	timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+
+    	$('.js-results').on('click', '.eachOne', function() {
+		$('ul').append(this);
+		});
+
+		$('.favoritePage').on('click', '.eachOne', function() {
+		$(this).remove();
+		});
 
 		return '<div class="eachOne">' +'<p class="name">' + item.name + '</p>' 
 		+ '<p class="date">' + timeStamp + '</p>';
@@ -47,7 +55,34 @@ function submitSearch() {
 	});
 }
 
+//function addToFavs() {
+		//$(document).on('click', '#thing', function() {
+		//console.log('it clicked');
+		//$('ul').append('<li>' + item.name + '</li>');
+		//});
+//}
+
+function getFavList() {
+	$('.favListBtn').click(function(event) {
+		event.preventDefault();
+		console.log('list works');
+		$('.resultsPage').addClass('invisible');
+		$('.favoritePage').removeClass('invisible');
+	});
+}
+
+function backToSearch() {
+	$('.backToSearch').click(function(event) {
+		event.preventDefault();
+		$('.resultsPage').removeClass('invisible');
+		$('.favoritePage').addClass('invisible');
+	});
+}
+
 
 $(function(){
 	submitSearch();
+	//addToFavs();
+	backToSearch();
+	getFavList();
 });
