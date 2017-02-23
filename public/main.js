@@ -29,7 +29,7 @@ function displayData(apiResults) {
 	var apiElement = '';
 	apiElement = apiResults.map(function(item) {
 		//console.log(item.first_release_date);
-
+		console.log(apiResults)
     	var d = new Date(item.first_release_date*1000);
     	timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
@@ -55,13 +55,6 @@ function submitSearch() {
 	});
 }
 
-//function addToFavs() {
-		//$(document).on('click', '#thing', function() {
-		//console.log('it clicked');
-		//$('ul').append('<li>' + item.name + '</li>');
-		//});
-//}
-
 function getFavList() {
 	$('.favListBtn').click(function(event) {
 		event.preventDefault();
@@ -79,10 +72,8 @@ function backToSearch() {
 	});
 }
 
-
 $(function(){
 	submitSearch();
-	//addToFavs();
 	backToSearch();
 	getFavList();
 });
