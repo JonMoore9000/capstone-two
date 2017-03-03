@@ -3,12 +3,12 @@ const uuid = require('uuid');
 
 // EACH MODEL FOR ENDPOINTS FOR FAVORITES
 const Games = {
-  create: function(name, date) {
+  create: function(name, first_release_date) {
     console.log('Creating a new game');
     const item = {
       name: name,
       id: uuid.v4(),
-      date: date
+      first_release_date: first_release_date
     };
     this.items[item.id] = item;
     return item;

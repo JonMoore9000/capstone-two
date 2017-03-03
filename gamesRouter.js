@@ -4,15 +4,15 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-Games.create(
-  'Zelda', '03/12/2017');
+//Games.create(
+  //'Zelda', '03/12/2017');
 
 router.get('/', (req, res) => {
   res.json(Games.get());
 });
 
 router.post('/', jsonParser, (req, res) => {
-  const requiredFields = ['name', 'date'];
+  const requiredFields = ['name', 'first_release_date'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -21,7 +21,7 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = Games.create(req.body.name, req.body.date);
+  const item = Games.create(req.body.name, req.body.first_release_date);
   res.status(201).json(item);
 });
 
