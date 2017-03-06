@@ -1,4 +1,4 @@
-
+const {BasicStrategy} = require('passport-http');
 const express = require('express');
 const jsonParser = require('body-parser').json();
 const passport = require('passport');
@@ -9,6 +9,26 @@ const router = express.Router();
 
 router.use(jsonParser);
 
+const strategy = new BasicStrategy(
+  (username, password, cb) => {
+    User
+      .findOne({username})
+      .exec()
+      .then(user => {
+        if (!user) {
+          return cb(null, false, {
+            message: 'Incorrect username'
+          });
+        }
+        if (user.password !== password) {
+          return cb(null, false, 'Incorrect password');
+        }
+        return cb(null, user);
+      })
+      .catch(err => cb(err))
+});
+
+passport.use(strategy);
 
 // new user
 router.post('/', function (req, res) {
@@ -99,6 +119,20 @@ router.post('/', function (req, res) {
         });
 });
 
+// GET just to test if we are adding users
+router.get('/', (req, res) => {
+  return User
+    .find()
+    .exec()
+    .then(users => res.json(users.map(user => user.apiRepr())))
+    .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
+});
+
+router.get('/login',
+  passport.authenticate('basic', {session: false}),
+  (req, res) => res.json({user: req.user.apiRepr()})
+);
+
 router.post('/login', function (req, res, next) {
     passport.authenticate('basic', function (err, user, info) {
         if (err) {
@@ -113,12 +147,34 @@ router.post('/login', function (req, res, next) {
             if (err) {
                 return console.log('Error authenticating user');
             }
-            return res.status(200).json({
-                project: user.project
-            });
         });
     })(req, res, next);
 });
+
+const basicStrategy = new BasicStrategy(function(username, password, callback) {
+  let user;
+  User
+    .findOne({username: username})
+    .exec()
+    .then(_user => {
+      user = _user;
+      if (!user) {
+        return callback(null, false, {message: 'Incorrect username'});
+      }
+      return user.validatePassword(password);
+    })
+    .then(isValid => {
+      if (!isValid) {
+        return callback(null, false, {message: 'Incorrect password'});
+      }
+      else {
+        return callback(null, user)
+      }
+    });
+});
+
+passport.use(basicStrategy);
+router.use(passport.initialize());
 
 
 module.exports = router;

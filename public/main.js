@@ -103,7 +103,6 @@ function submitSearch() {
 function getMainPage() {
 	$('.signUpPage').remove();
 	$('.loginBox').remove();
-	$('.resultsPage').removeClass('invisible');
 	$('.logged-in').text(`Hello, ${state.loggedIn}`);
 }
 
@@ -157,17 +156,13 @@ function loginUser(username, password) {
             type: 'POST',
             url: 'http://localhost:8080/users/login',
             headers: {
-                'Authorization': 'Basic ' + btoa(username + ":" + password)
+                'Authorization': 'Basic ' + btoa(username + ":" + password),
+                'Access-Control-Allow-Origin': '*',
             },
             'data': `{\"username\": \"${username}\",\n\t\"password\": \"${password}\"\n}`
         })
-        .done(function() {
-            state.invalidLogin = false;
-            getMainPage();
-        })
-        .fail(function() {
-            failedLogin();
-        });
+    .done(getMainPage())
+    .fail(failedLogin());
 }
 
 $('.signUpForm').on('submit', function(e) {
