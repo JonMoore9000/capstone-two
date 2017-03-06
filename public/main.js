@@ -6,7 +6,7 @@ base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/";
 // Global state object for login
 const state = {
     loggedIn: '',
-    invalidLogin: false,
+    invalidLogin: false
 };
 
 // Get API DATA
@@ -47,7 +47,7 @@ function getFavoriteData(callback) {
 	var query = {
 		url: "/favorites",
 		data: {
-			"fields": "name, first_release_date",
+			"fields": "id",
 		},
 		type: 'GET',
 		dataType: 'json',
@@ -102,7 +102,9 @@ function submitSearch() {
 
 function getMainPage() {
 	$('.signUpPage').remove();
+	$('.loginBox').remove();
 	$('.resultsPage').removeClass('invisible');
+	$('.logged-in').text(`Hello, ${state.loggedIn}`);
 }
 
 function getFavList() {
@@ -134,17 +136,18 @@ function getSignUpPage() {
 	$('.signUpBtn').click(function(event) {
 		event.preventDefault();
 		$('.resultsPage').addClass('invisible');
+		$('.loginBox').addClass('invisible');
 		$('.signUpPage').removeClass('invisible');
 	});
 }
 
 
-// sign up listener
-$('.signUpForm').on('submit', function(e) {
+// login listener
+$('.loginForm').on('submit', function(e) {
     e.preventDefault();
     var username =  $('#username').val();
     var password = $('#password').val();
-    signUpUser(username, password);
+    loginUser(username, password);
 });
 
 // login user
@@ -152,7 +155,7 @@ function loginUser(username, password) {
     state.loggedIn = username;
     $.ajax({
             type: 'POST',
-            url: '/users/login',
+            url: 'http://localhost:8080/users/login',
             headers: {
                 'Authorization': 'Basic ' + btoa(username + ":" + password)
             },
@@ -167,26 +170,31 @@ function loginUser(username, password) {
         });
 }
 
+$('.signUpForm').on('submit', function(e) {
+	e.preventDefault();
+	signUpUser();
+});
 
-//Post request on new user login
-function signUpUser(username, password) {
-	var newUsername = $('#username').val();
-	var newPassword = $('#password').val();
+
+//Post request on new user sign up
+function signUpUser() {
+	var newUsername = $('#newUsername').val();
+	var newPassword = $('#newPassword').val();
     $.ajax({
             type: 'POST',
-            url: '/users',
+            url: 'http://localhost:8080/users',
             'headers': {
                 "content-type": "application/json",
                 "cache-control": "no-cache",
             },
-            'data': `{\"username\": \"${username}\",\n\t\"password\": \"${password}\"\n}`
+            'data': `{\"username\": \"${newUsername}\",\n\t\"password\": \"${newPassword}\"\n}`,
         })
-        .done(function () {
+        .done(function() {
             loginUser(newUsername, newPassword);
         })
-        .fail(function () {
+        .fail(function() {
             failedLogin();
-        });
+        })
 }
 
 function failedLogin () {  

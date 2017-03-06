@@ -1,5 +1,6 @@
-var express = require('express');
+const express = require('express');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const User = require('./users/models');
@@ -8,6 +9,7 @@ const {router: usersRouter} = require('./users');
 const {BasicStrategy} = require('passport-http');
 
 mongoose.Promise = global.Promise;
+app.use(bodyParser.json());
 
 const {PORT, DATABASE_URL} = require('./config');
 
@@ -15,7 +17,7 @@ const gamesRouter = require('./gamesRouter');
 app.use('/favorites', gamesRouter);
 
 app.use(express.static('public'));
-app.listen(process.env.PORT || 8080);
+//app.listen(process.env.PORT || 8080);
 
 app.use(morgan('common'));
 
@@ -59,6 +61,7 @@ const basicStrategy = new BasicStrategy(function(username, password, callback) {
     });
 });
 
+app.use(passport.initialize());
 app.use('/users/', usersRouter);
 passport.use(basicStrategy);
 

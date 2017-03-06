@@ -3,8 +3,6 @@ const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const bcrypt = require('bcryptjs') ;
 
-mongoose.Promise = global.Promise;
-
 // SCHEMA FOR LOGIN INFO
 const UserSchema = mongoose.Schema({
   username: {
@@ -35,6 +33,6 @@ UserSchema.statics.hashPassword = function(password) {
     .then(hash => hash);
 }
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('users', UserSchema);
 
 module.exports = User;
