@@ -4,46 +4,48 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const User = require('./users/models');
+const favorite = require('./favorites/models');
 const app = express();
 const {router: usersRouter} = require('./users');
+const {router: favRouter} = require('./favorites');
 const {BasicStrategy} = require('passport-http');
+const request = require('superagent');
 
 mongoose.Promise = global.Promise;
 app.use(bodyParser.json());
 
 const {PORT, DATABASE_URL} = require('./config');
 
-const gamesRouter = require('./gamesRouter');
-app.use('/favorites', gamesRouter);
+app.use('/favorites/', favRouter);
+app.use('/users/', usersRouter);
 
 app.use(express.static('public'));
 //app.listen(process.env.PORT || 8080);
 
 app.use(morgan('common'));
 
-app.get('/games', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-// DIRECTS TO FAVORITES PAGE AND LOOKS FOR LOG IN
-app.get('/favorites', function (req, res) {
-  res.alert('if you are viewing this page it means you are logged in');
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
 });
 
-// CHECKS IF USER IS LOGGED IN
-function checkAuth(req, res, next) {
-  if (!req.session.user_id) {
-    res.alert('You are not authorized to view this page, log in!');
-  } else {
-    next();
-  }
-}
-
-app.use('/users/', usersRouter);
+app.get('/games', (req, res) => {
+request
+  .get('https://igdbcom-internet-game-database-v1.p.mashape.com/games')
+  .set('X-Mashape-Key', 'EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT')
+  .set('Accept', 'application/json')
+  .end(function(err, result) {
+      res.json(result.body);
+  });
+});
 
 let server;
 
-function runServer () { 
+function runServer() { 
     return new Promise((resolve, reject) => {
         mongoose.connect(DATABASE_URL, err => {
             if (err) {
@@ -61,7 +63,7 @@ function runServer () {
         });
     };
 
-function closeServer () {
+function closeServer() {
     return mongoose.disconnect().then(() => {
         return new Promise((resolve, reject) => {
             console.log('closing server');

@@ -1,18 +1,20 @@
-const {Games} = require('./models');
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
+const uuid = require('uuid');
 
-//Games.create(
-  //'Zelda', '03/12/2017');
+router.use(jsonParser);
+
+const favorite = require('./models');
+
 
 router.get('/', (req, res) => {
-  res.json(Games.get());
+  res.json(favorites.get());
 });
 
 router.post('/', jsonParser, (req, res) => {
-  const requiredFields = ['name', 'first_release_date'];
+  const requiredFields = ['userId', 'gameId'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -21,12 +23,15 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = Games.create(req.body.name, req.body.first_release_date);
+  const item = favorite.create(
+    {userId: req.body.userId, gameId: req.body.gameId});
   res.status(201).json(item);
 });
+  //const item = Games.create(req.body.name, req.body.first_release_date);
+  //res.status(201).json(item);
 
 router.delete('/:id', (req, res) => {
-  Games.delete(req.params.id);
+  favorites.delete(req.params.id);
   console.log(`Deleted shopping list item \`${req.params.ID}\``);
   res.status(204).end();
 });
@@ -55,6 +60,7 @@ router.put('/:id', jsonParser, (req, res) => {
     date: req.body.date
   });
   res.status(204).json(updatedItem);
-})
+});
+
 
 module.exports = router;

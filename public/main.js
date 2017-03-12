@@ -1,7 +1,9 @@
 
 // API KEY = EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT
 
-base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/";
+var base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/";
+var local = "http://localhost:8080/games";
+var local_url = "https://immense-chamber-87502.herokuapp.com/games";
 
 // Global state object for login
 const state = {
@@ -12,11 +14,7 @@ const state = {
 // Get API DATA
 function getData(callback, searchItem) {
 	var query = {
-		url: base_url,
-		headers: {
-			"X-Mashape-Key":"EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT",
-			"Accept": "application/json"
-		},
+		url: "/games",
 		data: {
 			"fields": "name,first_release_date,cover",
 			"limit": 15,
@@ -72,9 +70,9 @@ function displayFavoriteData(Results) {
 };
 
 // DISPLAY API DATA
-function displayData(apiResults) {
+function displayData(results) {
 	var apiElement = '';
-	apiElement = apiResults.map(function(item) {
+	apiElement = results.map(function(item) {
 		//console.log(item.first_release_date);
 		//console.log(apiResults)
     	var d = new Date(item.first_release_date*1000);
@@ -154,7 +152,7 @@ function loginUser(username, password) {
     state.loggedIn = username;
     $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/users/login',
+            url: '/users/login',
             headers: {
                 'Authorization': 'Basic ' + btoa(username + ":" + password),
                 'Access-Control-Allow-Origin': '*',
@@ -177,7 +175,7 @@ function signUpUser() {
 	var newPassword = $('#newPassword').val();
     $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/users',
+            url: '/users',
             'headers': {
                 "content-type": "application/json",
                 "cache-control": "no-cache",
