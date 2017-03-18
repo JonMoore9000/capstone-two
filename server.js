@@ -28,19 +28,42 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// passport authorization functions
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
 
 app.get('/games', (req, res) => {
+  console.log(req.query.search);
 request
-  .get('https://igdbcom-internet-game-database-v1.p.mashape.com/games')
+  .get('https://igdbcom-internet-game-database-v1.p.mashape.com/games/')
+  .query({ search: req.query.search, limit: req.query.limit, fields: req.query.fields})
   .set('X-Mashape-Key', 'EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT')
   .set('Accept', 'application/json')
   .end(function(err, result) {
-      res.json(result.body);
+    console.log(result.text)
+      res.json(JSON.parse(result.text));
   });
+});
+
+app.post('/favorites', (req, res) => {
+  console.log(req.body)
+  res.end();
 });
 
 let server;

@@ -14,11 +14,10 @@ const state = {
 // Get API DATA
 function getData(callback, searchItem) {
 	var query = {
-		url: "/games",
+		url: '/games',
 		data: {
-			"fields": "name,first_release_date,cover",
+			"fields": "name",
 			"limit": 15,
-			"order": "release_dates.date:desc",
 			"search": searchItem,
 		},
 		type: 'GET',
@@ -28,73 +27,28 @@ function getData(callback, searchItem) {
 	$.ajax(query);
 };
 
-// SAVING AND GETTING FAVORITE GAMES
-function saveFavoriteData() {
-	var query = {
-		url: "/favorites",
-		data: {
-			"fields": "name, first_release_date",
-		},
-		type: 'POST',
-		dataType: 'json',
-	};
-	$.ajax(query);
-};
-
-function getFavoriteData(callback) {
-	var query = {
-		url: "/favorites",
-		data: {
-			"fields": "id",
-		},
-		type: 'GET',
-		dataType: 'json',
-		success: callback
-	};
-	$.ajax(query);
-};
-
-//DISPLAY FAVORITE PAGE DATA
-function displayFavoriteData(Results) {
-	var Element = '';
-	Element = Results.map(function(item) {
-		//console.log(item.first_release_date);
-		//console.log(Results)
-    	var d = new Date(item.first_release_date*1000);
-    	timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
-
-		return '<div class="eachOne">' +'<p class="name">' + item.name + '</p>' 
-		+ '<p class="date">' + timeStamp + '</p>';
-	});
-	$('.js-results').html(Element);
-};
-
 // DISPLAY API DATA
 function displayData(results) {
+	//console.log(results);
 	var apiElement = '';
 	apiElement = results.map(function(item) {
 		//console.log(item.first_release_date);
-		//console.log(apiResults)
+		//console.log(data)
     	var d = new Date(item.first_release_date*1000);
     	timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
-
-		//$('.favoritePage').on('click', '.eachOne', function() {
-		//$(this).remove();
-		//});
 
 		return '<div class="eachOne" data-id="'+item.id+'">' +'<p class="name">' + item.name + '</p>' 
 		+ '<p class="date">' + timeStamp + '</p>'
 		+ '<button class="thing">Add</button>';
 	});
-
 	$('#js-results').html(apiElement);
 };
 
-function submitSearch() {
+function addGame() {
 	$('.js-form').submit(function(event) {
 		event.preventDefault();
-		var query = $('.js-query').val();
-		getData(displayData, query);
+		//var gameName = $('.js-query').val();
+		addGameToLogDB();
 	});
 }
 
@@ -113,19 +67,26 @@ function getFavList() {
 	});
 }
 
+function addGameToLogDB() {
+	var name = $('.js-query').val();
+	var user = state.loggedIn;
+	$.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/favorites',
+            'headers': {
+                "content-type": "application/json",
+            },
+            'data': `{\"gameName\": \"${name}\",\n\t\"userName\": \"${user}\"\n}`,
+    })
+}
+
 
 function addToFavorite() {
 	$('#js-results').on('click', '.thing', function() {
 		var gameId = $(this).parent().data('id');
-		//console.log(gameId);
+		console.log(gameId);
 		// post call goes here to save favorite games
-		$.ajax({
-            type: 'POST',
-            url: '/favorites',
-            data: {
-                'fields':'id'
-            },
-        });
     });
 }
 
@@ -201,7 +162,7 @@ function failedLogin () {
 
 $(function(){
 	addToFavorite();
-	submitSearch();
+	addGame();
 	getFavList();
 	getSignUpPage();
 });

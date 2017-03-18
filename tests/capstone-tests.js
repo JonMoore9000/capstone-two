@@ -27,3 +27,19 @@ chai.use(chaiHttp);
         });
     });
 });
+
+  describe('POST endpoint', function() {
+
+  it('should add an item on POST', function() {
+    const newItem = {userId: '111', gameId: '222'};
+    return chai.request(app)
+      .post('/favorites')
+      .send(newItem)
+      .then(function(res) {
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        //res.body.should.include.keys('userId', 'gameId');
+      });
+  });
+});
