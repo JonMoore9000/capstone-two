@@ -48,22 +48,27 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/games', (req, res) => {
-  console.log(req.query.search);
-request
-  .get('https://igdbcom-internet-game-database-v1.p.mashape.com/games/')
-  .query({ search: req.query.search, limit: req.query.limit, fields: req.query.fields})
-  .set('X-Mashape-Key', 'EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT')
-  .set('Accept', 'application/json')
-  .end(function(err, result) {
-    console.log(result.text)
-      res.json(JSON.parse(result.text));
-  });
-});
+//app.get('/games', (req, res) => {
+  //console.log(req.query.search);
+//request
+  //.get('https://igdbcom-internet-game-database-v1.p.mashape.com/games/')
+  //.query({ search: req.query.search, limit: req.query.limit, fields: req.query.fields})
+  //.set('X-Mashape-Key', 'EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT')
+  //.set('Accept', 'application/json')
+  //.end(function(err, result) {
+    //console.log(result.text)
+      //res.json(JSON.parse(result.text));
+  //});
+//});
 
 app.post('/favorites', (req, res) => {
   console.log(req.body)
   res.end();
+});
+
+app.get('/favorites', (req, res) => {
+  console.log(res.body)
+  res.json(res.body);
 });
 
 let server;

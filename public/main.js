@@ -12,43 +12,44 @@ const state = {
 };
 
 // Get API DATA
-function getData(callback, searchItem) {
-	var query = {
-		url: '/games',
-		data: {
-			"fields": "name",
-			"limit": 15,
-			"search": searchItem,
-		},
-		type: 'GET',
-		dataType: 'json',
-		success: callback,
-	};
-	$.ajax(query);
-};
+//function getData(callback, searchItem) {
+	//var query = {
+		//url: '/games',
+		//data: {
+		//	"fields": "name",
+		//	"limit": 15,
+		//	"search": searchItem,
+		//},
+		//type: 'GET',
+		//dataType: 'json',
+		//success: callback,
+	//};
+	//$.ajax(query);
+//};
 
 // DISPLAY API DATA
-function displayData(results) {
+//function displayData(results) {
 	//console.log(results);
-	var apiElement = '';
-	apiElement = results.map(function(item) {
+	//var apiElement = '';
+	//apiElement = results.map(function(item) {
 		//console.log(item.first_release_date);
 		//console.log(data)
-    	var d = new Date(item.first_release_date*1000);
-    	timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+    	//var d = new Date(item.first_release_date*1000);
+    	//timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 
-		return '<div class="eachOne" data-id="'+item.id+'">' +'<p class="name">' + item.name + '</p>' 
-		+ '<p class="date">' + timeStamp + '</p>'
-		+ '<button class="thing">Add</button>';
-	});
-	$('#js-results').html(apiElement);
-};
+		//return '<div class="eachOne" data-id="'+item.id+'">' +'<p class="name">' + item.name + '</p>' 
+		//+ '<p class="date">' + timeStamp + '</p>'
+		//+ '<button class="thing">Add</button>';
+	//});
+	//$('#js-results').html(apiElement);
+//};
 
 function addGame() {
 	$('.js-form').submit(function(event) {
 		event.preventDefault();
 		//var gameName = $('.js-query').val();
 		addGameToLogDB();
+		alert('Your game was added!');
 	});
 }
 
@@ -58,12 +59,10 @@ function getMainPage() {
 	$('.logged-in').text(`Hello, ${state.loggedIn}`);
 }
 
-function getFavList() {
-	$('.favListBtn').click(function(event) {
+function getYourGames() {
+	$('.yourGames').click(function(event) {
 		event.preventDefault();
-		getFavoriteData(displayFavoriteData);
-		//$('.resultsPage').addClass('invisible');
-		//$('.favoritePage').removeClass('invisible');
+		getGamesFromDB(displayGames);
 	});
 }
 
@@ -81,23 +80,53 @@ function addGameToLogDB() {
     })
 }
 
-
-function addToFavorite() {
-	$('#js-results').on('click', '.thing', function() {
-		var gameId = $(this).parent().data('id');
-		console.log(gameId);
-		// post call goes here to save favorite games
-    });
+function getGamesFromDB(callback) {
+	$.ajax({
+		type: 'GET',
+		dataType: 'json',
+		url: '/favorites',
+		'headers': {
+			"content-type": "application/json",
+		},
+		'data': 'gameName, userName',
+		success: callback,
+	})
 }
 
-function getSignUpPage() {
-	$('.signUpBtn').click(function(event) {
-		event.preventDefault();
-		$('.resultsPage').addClass('invisible');
-		$('.loginBox').addClass('invisible');
-		$('.signUpPage').removeClass('invisible');
+function displayGames(data) {
+	user = state.loggedIn;
+	var element = [];
+	var thing = data.favorites;
+
+		for (var i = 0; i < thing.length ; i++) {
+    	if (thing[i].userName === user) {
+        element.push(thing[i]);
+    	}
+	}
+	 var result = element.map(function(item) {
+		return '<div id="eachOne"><p>' + item.gameName + '</p></div>';
 	});
-}
+	
+		$('#js-games').html(result);
+};
+
+
+//function addToFavorite() {
+	//$('#js-results').on('click', '.thing', function() {
+		//var gameId = $(this).parent().data('id');
+		//console.log(gameId);
+		// post call goes here to save favorite games
+    //});
+//}
+
+//function getSignUpPage() {
+	//$('.signUpBtn').click(function(event) {
+		//event.preventDefault();
+		//$('.resultsPage').addClass('invisible');
+		//$('.loginBox').addClass('invisible');
+		//$('.signUpPage').removeClass('invisible');
+	//});
+//}
 
 
 // login listener
@@ -161,8 +190,8 @@ function failedLogin () {
 }
 
 $(function(){
-	addToFavorite();
+	//addToFavorite();
 	addGame();
-	getFavList();
-	getSignUpPage();
+	getYourGames();
+	//getSignUpPage();
 });

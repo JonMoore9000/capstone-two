@@ -9,9 +9,22 @@ router.use(jsonParser);
 const favorite = require('./models');
 
 
-//router.get('/', (req, res) => {
-  //res.json(favorites.get());
-//});
+router.get('/', (req, res) => {
+  favorite
+    .find('userName')
+    .exec()
+    .then(favorites => {
+      res.json({
+        favorites: favorites.map(
+          (favorite) => favorite.apiRepr())
+      });
+    })
+    .catch(
+      err => {
+        console.error(err);
+        res.status(500).json({message: 'Internal server error'});
+    });
+});
 
 router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['gameName', 'userName'];
