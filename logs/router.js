@@ -6,17 +6,17 @@ const uuid = require('uuid');
 
 router.use(jsonParser);
 
-const favorite = require('./models');
+const time = require('./models');
 
 
 router.get('/', (req, res) => {
-  favorite
+  time
     .find()
     .exec()
-    .then(favorites => {
+    .then(times => {
       res.json({
-        favorites: favorites.map(
-          (favorite) => favorite.apiRepr())
+        times: times.map(
+          (time) => time.apiRepr())
       });
     })
     .catch(
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', jsonParser, (req, res) => {
-  const requiredFields = ['gameName', 'userName'];
+  const requiredFields = ['gameName', 'userName', 'time'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -36,8 +36,8 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = favorite.create(
-    {gameName: req.body.gameName, userName: req.body.userName});
+  const item = time.create(
+    {gameName: req.body.gameName, userName: req.body.userName, time: req.body.time});
   res.status(201).json(item);
 });
   //const item = Games.create(req.body.name, req.body.first_release_date);

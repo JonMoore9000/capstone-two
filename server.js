@@ -8,6 +8,7 @@ const favorite = require('./favorites/models');
 const app = express();
 const {router: usersRouter} = require('./users');
 const {router: favRouter} = require('./favorites');
+const {router: timeRouter} = require('./logs');
 const {BasicStrategy} = require('passport-http');
 const request = require('superagent');
 
@@ -18,6 +19,7 @@ const {PORT, DATABASE_URL} = require('./config');
 
 app.use('/favorites/', favRouter);
 app.use('/users/', usersRouter);
+app.use('/logs/', timeRouter);
 
 app.use(express.static('public'));
 //app.listen(process.env.PORT || 8080);
@@ -66,9 +68,11 @@ app.post('/favorites', (req, res) => {
   res.end();
 });
 
+
+
 app.get('/favorites', (req, res) => {
   console.log(res.body)
-  res.json(res.body);
+  res.json(res.body); 
 });
 
 let server;

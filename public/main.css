@@ -29,13 +29,33 @@ button:hover {
 	font-family: Calibri;
 }
 
-#eachOne {
+.eachOne {
 	border: 2px solid black;
 	margin-bottom: 10px;
 }
 
 .eachOne:hover {
 	border: 2px solid red;
+}
+
+.thisOne {
+	border: 2px solid yellow;
+	margin-bottom: 10px;
+}
+
+.thisOne:hover {
+	border: 2px solid green;
+}
+
+.timeTop {
+	border: 2px solid black;
+	margin-bottom: 10px;
+}
+
+.gameChoice {
+	background-color: black;
+	color: white;
+	padding: 5px;
 }
 
 .invisible {

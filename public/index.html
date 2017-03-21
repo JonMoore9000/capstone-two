@@ -15,9 +15,17 @@
 			<div class="title">Upcoming Releases!</div>
 			<div class="logged-in"></div>
 			<button class="yourGames">Your Games</button>
+			<button class="yourTime">Your Logs</button>
+			<button class="homePage">Home</button>
 		</div>
 	</div>
 </div>	
+
+<div class="row">
+<div class="col-12">
+<div class="yourTimesPage invisible"></div>
+</div>
+</div>
 
 <div class="resultsPage">
 	<div class="results">
@@ -26,6 +34,14 @@
 				<input type="text" class="js-query" placeholder="Type Your Game Here!">
 				<button type="submit" class="findResults">Add a Game To Log</button>
 			</form>
+				<div class="timeTop invisible">
+					<h3 class="gameChoice">You are loggin time for: <h3 class="chosenGame"></h3></h3>
+					<h1 id="headTime"><time class="timeLogged"></time></h1>
+					<button id="start">start</button>
+					<button id="stop">stop</button>
+					<button id="clear">clear</button>
+					<button id="save">save</button>
+				</div>
 			<div id="js-games"></div>
 		</div>
 	</div>
