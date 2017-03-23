@@ -195,15 +195,15 @@ function displayTimes(data) {
 	//console.log(thing);
 
 	var thing = data.times;
-
-		for (var i = 0; i < thing.length ; i++) {
-    	if (thing[i].userName === user) {
-        element.push(thing[i]);
+	for (var i = 0; i < thing.length ; i++) {
+    if (thing[i].userName === user) {
+    element.push(thing[i]);
   	}
+  	console.log(element);
   }
 
 
-var times = _.groupBy(data.times, "gameName");
+var times = _.groupBy(element, "gameName");
 let game_times = {};
 for(key in times){
   game_times[key] = _.reduce(times[key], (sum, time)=> {
@@ -224,6 +224,7 @@ for(key in times){
   var final2 = final1.replace(/}/g, '');
   var result = final2.replace(/,/g, '');
 }
+
 //console.log(str);
 $('.yourTimesPage').html(result);
 
