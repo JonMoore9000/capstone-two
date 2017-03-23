@@ -12,39 +12,6 @@ const state = {
     invalidLogin: false
 };
 
-// Get API DATA
-//function getData(callback, searchItem) {
-	//var query = {
-		//url: '/games',
-		//data: {
-		//	"fields": "name",
-		//	"limit": 15,
-		//	"search": searchItem,
-		//},
-		//type: 'GET',
-		//dataType: 'json',
-		//success: callback,
-	//};
-	//$.ajax(query);
-//};
-
-// DISPLAY API DATA
-//function displayData(results) {
-	//console.log(results);
-	//var apiElement = '';
-	//apiElement = results.map(function(item) {
-		//console.log(item.first_release_date);
-		//console.log(data)
-    	//var d = new Date(item.first_release_date*1000);
-    	//timeStamp = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
-
-		//return '<div class="eachOne" data-id="'+item.id+'">' +'<p class="name">' + item.name + '</p>' 
-		//+ '<p class="date">' + timeStamp + '</p>'
-		//+ '<button class="thing">Add</button>';
-	//});
-	//$('#js-results').html(apiElement);
-//};
-
 function addGame() {
 	$('.js-form').submit(function(event) {
 		event.preventDefault();
@@ -123,12 +90,6 @@ function chooseGame() {
 	});
 }
 
-//function startTimer() {
-//	$('#js-games').on('click', '.start', function() {
-//		timer();
-//	});
-//}
-
 function  timeKeeper() { 
 	var h1 = $('#headTime')[0],
     start = $('#start'),
@@ -163,40 +124,33 @@ function timer() {
 
 /* Start button */
 $('#start').on('click', function() {
-	console.log('start button works');
+	//console.log('start button works');
 	timer();
 });
 
 /* Stop button */
 $('#stop').on('click', function() {
-	console.log('stop button works');
+	//console.log('stop button works');
     clearTimeout(t);
 });
 
 /* Clear button */
 $('#clear').on('click', function() {
-	console.log('clear button works');
+	//console.log('clear button works');
     h1.textContent = "00.00.00";
     seconds = 0; minutes = 0; hours = 0;
 });
+
+$('#js-games').on('click', '.startLog', function() {
+		var game = '';
+		game = $(this).parent().find('.game');
+		//console.log(game);
+		h1.textContent = "00.00.00";
+    	seconds = 0; minutes = 0; hours = 0;
+	});
+
+
 };
-
-//function addToFavorite() {
-	//$('#js-results').on('click', '.thing', function() {
-		//var gameId = $(this).parent().data('id');
-		//console.log(gameId);
-		// post call goes here to save favorite games
-    //});
-//}
-
-//function getSignUpPage() {
-	//$('.signUpBtn').click(function(event) {
-		//event.preventDefault();
-		//$('.resultsPage').addClass('invisible');
-		//$('.loginBox').addClass('invisible');
-		//$('.signUpPage').removeClass('invisible');
-	//});
-//}
 
 function logTime() {
 	$('#save').on('click', function() {
@@ -209,8 +163,8 @@ function logTimeToDb() {
 	var user = state.loggedIn;
 	var game = $('.chosenGame').text();
 	var time = $('#headTime').text();
-	console.log(game);
-	console.log(time);
+	//console.log(game);
+	//console.log(time);
 	$.ajax({
             type: 'POST',
             dataType: 'json',
@@ -265,9 +219,13 @@ for(key in times){
     return hh + "." + mm + "." + ss + '<br>';
   },"00.00.00");
   str = JSON.stringify(game_times, null, 4);
+  var final = str.replace(/"/g, '');
+  var final1 = final.replace(/{/g, '');
+  var final2 = final1.replace(/}/g, '');
+  var result = final2.replace(/,/g, '');
 }
-console.log(str);
-$('.yourTimesPage').html(str);
+//console.log(str);
+$('.yourTimesPage').html(result);
 
 };
 
