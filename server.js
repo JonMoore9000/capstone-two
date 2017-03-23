@@ -11,6 +11,7 @@ const {router: favRouter} = require('./favorites');
 const {router: timeRouter} = require('./logs');
 const {BasicStrategy} = require('passport-http');
 const request = require('superagent');
+var _ = require('lodash');
 
 mongoose.Promise = global.Promise;
 app.use(bodyParser.json());

@@ -1,6 +1,7 @@
 
 // API KEY = EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT
 
+
 var base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/";
 var local = "http://localhost:8080/games";
 var local_url = "https://immense-chamber-87502.herokuapp.com/games";
@@ -57,6 +58,7 @@ function getMainPage() {
 	$('.signUpPage').remove();
 	$('.loginBox').remove();
 	$('.logged-in').text(`Hello, ${state.loggedIn}`);
+	$('.timeTop').removeClass('invisible');
 }
 
 function getYourGames() {
@@ -236,25 +238,44 @@ function getTimesFromDB(callback) {
 function displayTimes(data) {
 	user = state.loggedIn;
 	var element = [];
+	//console.log(thing);
+
 	var thing = data.times;
 
 		for (var i = 0; i < thing.length ; i++) {
     	if (thing[i].userName === user) {
         element.push(thing[i]);
-    	}
-	}
-	 var result = element.map(function(item) {
-		return '<div class="timeLogs"><p>' + item.gameName + ' ' + item.time + '</p></div>';
-	});
-	
-		$('.yourTimesPage').html(result);
+  	}
+  }
+
+
+var times = _.groupBy(data.times, "gameName");
+let game_times = {};
+for(key in times){
+  game_times[key] = _.reduce(times[key], (sum, time)=> {
+    time = time.time.split(".");
+    sum = sum.split(".");
+    let total = "";
+    let ss = parseInt(sum[2]) + parseInt(time[2]);
+    let mm = parseInt(sum[1]) + parseInt(time[1]);
+    let hh = parseInt(sum[0]) + parseInt(time[0]);
+    mm += parseInt(ss / 60);
+    hh += parseInt(mm / 60);
+    ss = ss % 60;
+    return hh + "." + mm + "." + ss + '<br>';
+  },"00.00.00");
+  str = JSON.stringify(game_times, null, 4);
+}
+console.log(str);
+$('.yourTimesPage').html(str);
+
 };
 
 function timePage() {
 	$('.yourTime').on('click', function() {
 	$('.resultsPage').addClass('invisible');
 	$('.yourTimesPage').removeClass('invisible');
-	getTimesFromDB(displayTimes);
+	getTimesFromDB(displayTimes);;
 	});
 }
 
@@ -289,6 +310,13 @@ function loginUser(username, password) {
         })
     .done(getMainPage())
     .fail(failedLogin());
+}
+
+function signUp() {
+	$('.signUpBtn').on('click', function() {
+		$('.signUpPage').removeClass('invisible');
+		$('.loginBox').addClass('invisible');
+	});
 }
 
 $('.signUpForm').on('submit', function(e) {
@@ -330,6 +358,7 @@ function failedLogin () {
 $(function(){
 	chooseGame();
 	addGame();
+	signUp();
 	getYourGames();
 	homePage();
 	timeKeeper();
