@@ -1,41 +1,74 @@
 * {
 	box-sizing: border-box;
+	font-family: 'Century Gothic', 'sans-serif';
 }
 
 body {
-	font-family: 'Raleway', 'sans-serif';
+	font-family: 'Century Gothic', 'sans-serif';
+	font-size: 15px;
+	background-color: #323232;
 }
 
 button {
-	width: auto;
-	border: 1px solid black;
-	background-color: white;
+	font-size: 20px;
+	border: 1px solid #323232;
+	color: white;
+	background-color: #323232;
+}
+
+input {
+	font-size: 15px;
+	margin-top: 15px;
 }
 
 button:hover {
-	background-color: black;
+	color: #dd5757;
+}
+
+.title {
+	font-size: 28px;
 	color: white;
+}
+
+.logged-in {
+	color: white;
+	font-size: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	color: #dd5757;
 }
 
 .favListBtn {
 	text-align: center;
 }
 
-.name {
-	font-size: 20px;
+.loginBtn {
+	margin-top: 10px;
+}
+
+.signUpUserBtn {
+	margin-top: 10px;
 }
 
 .date {
-	font-family: Calibri;
+	font-family: 'Century Gothic', 'sans-serif';
+}
+
+.yourTimesPage {
+	color: #323232;
+	font-weight: bold;
+	background-color: white;
+	font-size: 20px;
+	padding: 10px;
 }
 
 .eachOne {
-	border: 2px solid black;
+	border: 2px solid white;
 	margin-bottom: 10px;
 }
 
 .eachOne:hover {
-	border: 2px solid red;
+	border: 2px solid white;
 }
 
 .thisOne {
@@ -48,7 +81,7 @@ button:hover {
 }
 
 .timeTop {
-	border: 2px solid black;
+	border: 2px solid white;
 	margin-bottom: 10px;
 }
 
@@ -56,6 +89,19 @@ button:hover {
 	background-color: black;
 	color: white;
 	padding: 5px;
+}
+
+#headTime {
+	color: white;
+}
+
+.game {
+	color: white;
+	font-size: 20px;
+}
+
+.gameChoice {
+	font-family: 'Century Gothic', 'sans-serif';
 }
 
 .invisible {
@@ -66,12 +112,32 @@ button:hover {
 	display: block;
 }
 
+.signUpPage {
+	padding: 8px;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	margin-top: 15px;
+	border: 1px solid white;
+}
+
 .loginBox {
-	width: 290px;
-	height: 120px;
-	border: 1px solid black;
+	padding: 8px;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	margin-top: 15px;
+	border: 1px solid white;
+}
+
+.signUpBox {
+	padding: 10px;
+	width: 300px;
+	margin: 0 auto;
 }
 
 .loginForm {
 	padding: 10px;
+	width: 300px;
+	margin: 0 auto;
 }
