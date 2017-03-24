@@ -266,9 +266,9 @@ function loginUser(username, password) {
                 'Access-Control-Allow-Origin': '*',
             },
             'data': `{\"username\": \"${username}\",\n\t\"password\": \"${password}\"\n}`
-        })
+     })
     .done(getMainPage())
-    .fail(failedLogin());
+    .fail(failed())
 }
 
 function signUp() {
@@ -305,10 +305,14 @@ function signUpUser() {
         })
 }
 
+function failed() {
+	alert('Login failed!');
+}
+
 function failedLogin () {  
     if (!state.invalidLogin) {
-        var incorrectAlert = `<div class="incorrect">
-        login failed</div>`
+        var incorrectAlert = `<p class="incorrect">
+        Login failed</p>`
         $('.signUpBox').append(incorrectAlert);
         state.invalidLogin = true
     }
