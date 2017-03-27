@@ -5,9 +5,9 @@ const expect = chai.expect;
 const mongoose = require('mongoose');
 //const faker = require('faker');
 const bcrypt = require('bcryptjs');
-const tester = require('supertest-as-promised').agent;
-const superagent = require('superagent');
-const agent = superagent.agent();
+//const tester = require('supertest-as-promised').agent;
+//const superagent = require('superagent');
+//const agent = superagent.agent();
 const {app, runServer, closeServer} = require('../server');
 const {User} = require('../users/index.js');
 
