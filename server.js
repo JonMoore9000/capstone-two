@@ -10,7 +10,7 @@ const {router: usersRouter} = require('./users');
 const {router: favRouter} = require('./favorites');
 const {router: timeRouter} = require('./logs');
 const {BasicStrategy} = require('passport-http');
-const request = require('superagent');
+//const request = require('superagent');
 
 mongoose.Promise = global.Promise;
 app.use(bodyParser.json());
