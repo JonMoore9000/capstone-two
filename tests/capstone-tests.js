@@ -13,25 +13,39 @@ const {User} = require('../users/index.js');
 
 chai.use(chaiHttp);
 
-// GET TEST
+function seedUser() {
+    console.log('seeding user data');
+    const salt = bcrypt.genSaltSync();
+    const hash = bcrypt.hashSync('123456', salt);
+    let user = {
+            username: 'james',
+            password: hash,
+        };      
+    return User.create(user);
+}
+
+// GET TESTS
   describe('GET endpoint', function() {
 
-    it('should get 200 status and HTML', function() {
+    it('should get an object from db', function() {
       
       let res;
       return chai.request(app)
-        .get('/games')
+        .get('/')
         .then(function(_res) {
           res = _res;
           res.should.have.status(200); 
+          res.body.should.be.a('object');
         });
     });
 });
 
+
+// POST TESTS
   describe('POST endpoint', function() {
 
-  it('should add an item on POST', function() {
-    const newItem = {userId: '111', gameId: '222'};
+  it('should add an a game on POST', function() {
+    const newItem = {gameName: '111', userName: '222'};
     return chai.request(app)
       .post('/favorites')
       .send(newItem)
@@ -42,4 +56,54 @@ chai.use(chaiHttp);
         //res.body.should.include.keys('userId', 'gameId');
       });
   });
+});
+
+  describe('POST endpoint', function() {
+
+  it('should POST times to db', function() {
+    const newItem = {gameName: '111', userName: '222', time: '00.00.00'};
+    return chai.request(app)
+      .post('/logs')
+      .send(newItem)
+      .then(function(res) {
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        //res.body.should.include.keys('userId', 'gameId');
+      });
+  });
+});
+
+  describe('testin login', function () {
+ 
+    before(function () {
+        return runServer();
+    });
+
+    beforeEach(function () {
+        return seedUser();
+    })
+
+    afterEach(function () {
+        return tearDownDB();
+    });
+
+    beforeEach(function () {
+        return tester(app)
+            .post('/users/login')
+            .send({
+                username: 'james',
+                password: '123456',
+            })
+            .auth('james', '123456')
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .then(function (res) {
+                res.should.have.status(201);
+            });
+    });
+
+    after(function () {
+        return closeServer();
+    });
 });

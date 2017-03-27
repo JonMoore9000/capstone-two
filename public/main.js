@@ -268,7 +268,7 @@ function loginUser(username, password) {
             'data': `{\"username\": \"${username}\",\n\t\"password\": \"${password}\"\n}`
      })
     .done(getMainPage())
-    .fail(failed())
+    //.fail(failed())
 }
 
 function signUp() {
