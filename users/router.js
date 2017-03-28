@@ -128,29 +128,6 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
 });
 
-router.get('/login',
-  passport.authenticate('basic', {session: false}),
-  (req, res) => res.json({user: req.user.apiRepr()})
-);
-
-router.post('/login', function (req, res, next) {
-    passport.authenticate('basic', function (err, user, info) {
-        if (err) {
-            return console.log('Error authenticating user');
-        }
-        if (!user) {
-            return res.status(401).json({
-                message: 'Username/Password Incorrect'
-            });
-        }
-        req.logIn(user, function (err) {
-            if (err) {
-                return console.log('Error authenticating user');
-            }
-        });
-    })(req, res, next);
-});
-
 const basicStrategy = new BasicStrategy(function(username, password, callback) {
   let user;
   User
@@ -176,5 +153,30 @@ const basicStrategy = new BasicStrategy(function(username, password, callback) {
 passport.use(basicStrategy);
 router.use(passport.initialize());
 
+router.get('/login',
+  passport.authenticate('basic', {session: false}),
+  (req, res) => res.json({user: req.user.apiRepr()})
+);
+
+router.post('/login', function (req, res, next) {
+    passport.authenticate('basic', function (err, user, info) {
+        if (err) {
+            return console.log('Error authenticating user');
+        }
+        if (!user) {
+            return res.status(401).json({
+                message: 'Username/Password Incorrect'
+            });
+        }
+        req.logIn(user, function (err) {
+            if (err) {
+                return console.log('Error authenticating user');
+            }
+            return res.status(200).json({
+                user: user.username
+            });
+        });
+    })(req, res, next);
+});
 
 module.exports = router;

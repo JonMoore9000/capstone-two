@@ -1,11 +1,3 @@
-
-// API KEY = EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT
-
-
-var base_url = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/";
-var local = "http://localhost:8080/games";
-var local_url = "https://immense-chamber-87502.herokuapp.com/games";
-
 // Global state object for login
 const state = {
     loggedIn: '',
@@ -15,13 +7,13 @@ const state = {
 function addGame() {
 	$('.js-form').submit(function(event) {
 		event.preventDefault();
-		//var gameName = $('.js-query').val();
 		addGameToLogDB();
 		alert('Your game was added!');
 	});
 }
 
 function getMainPage() {
+	state.invalidLogin = false;
 	$('.signUpPage').remove();
 	$('.loginBox').remove();
 	$('.logged-in').text(`Hello, ${state.loggedIn}`);
@@ -85,7 +77,6 @@ function chooseGame() {
 	$('#js-games').on('click', '.startLog', function() {
 		var game = '';
 		game = $(this).parent().find('.game');
-		//console.log(game);
 		$('.chosenGame').html(game.clone());
 	});
 }
@@ -97,8 +88,6 @@ function  timeKeeper() {
     clear = $('#clear'),
     seconds = 0, minutes = 0, hours = 0,
     t;
-
-    //console.log(stop);
 
 function add() {
     seconds++;
@@ -120,23 +109,19 @@ function add() {
 function timer() {
     t = setTimeout(add, 1000);
 }
-//timer();
 
 /* Start button */
 $('#start').on('click', function() {
-	//console.log('start button works');
 	timer();
 });
 
 /* Stop button */
 $('#stop').on('click', function() {
-	//console.log('stop button works');
     clearTimeout(t);
 });
 
 /* Clear button */
 $('#clear').on('click', function() {
-	//console.log('clear button works');
     h1.textContent = "00.00.00";
     seconds = 0; minutes = 0; hours = 0;
 });
@@ -148,8 +133,6 @@ $('#js-games').on('click', '.startLog', function() {
 		h1.textContent = "00.00.00";
     	seconds = 0; minutes = 0; hours = 0;
 	});
-
-
 };
 
 function logTime() {
@@ -163,8 +146,6 @@ function logTimeToDb() {
 	var user = state.loggedIn;
 	var game = $('.chosenGame').text();
 	var time = $('#headTime').text();
-	//console.log(game);
-	//console.log(time);
 	$.ajax({
             type: 'POST',
             dataType: 'json',
@@ -249,10 +230,9 @@ function homePage( ){
 // login listener
 $('.loginForm').on('submit', function(e) {
     e.preventDefault();
-    $('.timeTop').removeClass('invisible');
-    var username =  $('#username').val();
-    var password = $('#password').val();
-    loginUser(username, password);
+    	var username =  $('#username').val();
+    	var password = $('#password').val();
+    	loginUser(username, password);
 });
 
 // login user
@@ -263,12 +243,11 @@ function loginUser(username, password) {
             url: '/users/login',
             headers: {
                 'Authorization': 'Basic ' + btoa(username + ":" + password),
-                'Access-Control-Allow-Origin': '*',
             },
             'data': `{\"username\": \"${username}\",\n\t\"password\": \"${password}\"\n}`
      })
-    .done(getMainPage())
-    //.fail(failed())
+    .done(getMainPage)
+    .fail(failed)
 }
 
 function signUp() {
@@ -306,8 +285,12 @@ function signUpUser() {
 }
 
 function failed() {
-	alert('Login failed!');
+	if (!state.invalidLogin) {
+		alert('Login failed!');
+		state.invalidLogin = true;
+	}
 }
+
 
 function failedLogin () {  
     if (!state.invalidLogin) {

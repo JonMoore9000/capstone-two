@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const passport = require('passport');
-const BasicStrategy = require('passport-http').BasicStrategy;
+//const passport = require('passport');
+//const BasicStrategy = require('passport-http').BasicStrategy;
 const bcrypt = require('bcryptjs') ;
 
 // SCHEMA FOR LOGIN INFO

@@ -33,14 +33,13 @@ app.get('/', (req, res) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// passport authorization functions
+//passport authorization functions
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user.username);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+  User.findById(username, function(err, user) {
     done(err, user);
   });
 });
@@ -50,25 +49,15 @@ app.use(function(req, res, next) {
   next();
 });
 
-//app.get('/games', (req, res) => {
-  //console.log(req.query.search);
-//request
-  //.get('https://igdbcom-internet-game-database-v1.p.mashape.com/games/')
-  //.query({ search: req.query.search, limit: req.query.limit, fields: req.query.fields})
-  //.set('X-Mashape-Key', 'EVTRaVwxMBmshYbIbSC2Oy6rVJXEp1z7GUtjsnbb96nCpQIVtT')
-  //.set('Accept', 'application/json')
-  //.end(function(err, result) {
-    //console.log(result.text)
-      //res.json(JSON.parse(result.text));
-  //});
-//});
-
 app.post('/favorites', (req, res) => {
-  console.log(req.body)
-  res.end();
+  console.log(res.body)
+  res.json(res.body); 
 });
 
-
+//app.post('/login', (req, res) => {
+  //console.log(res.body)
+  //res.json(res.body); 
+//});
 
 app.get('/favorites', (req, res) => {
   console.log(res.body)
