@@ -7,8 +7,13 @@ const state = {
 function addGame() {
 	$('.js-form').submit(function(event) {
 		event.preventDefault();
-		addGameToLogDB();
-		alert('Your game was added!');
+		if(state.loggedIn.length) {
+			addGameToLogDB();
+			alert('Your game was added!');
+		}
+		else {
+			alert('Log in first!');
+		}
 	});
 }
 
