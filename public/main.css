@@ -115,6 +115,27 @@ button:hover {
 	display: block;
 }
 
+.yourGames, .yourTime, .homePage {
+	width: 100%;
+	border: 1px solid white;
+	padding: 3px;
+}
+
+.homePage:hover {
+	background-color: white;
+	color: #dd5757;
+}
+
+.yourGames:hover {
+	background-color: white;
+	color: #dd5757;
+}
+
+.yourTime:hover {
+	background-color: white;
+	color: #dd5757;
+}
+
 .signUpPage {
 	padding: 8px;
 	margin: 0 auto;
