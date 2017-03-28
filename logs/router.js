@@ -8,7 +8,6 @@ router.use(jsonParser);
 
 const time = require('./models');
 
-
 router.get('/', (req, res) => {
   time
     .find()
@@ -40,8 +39,6 @@ router.post('/', jsonParser, (req, res) => {
     {gameName: req.body.gameName, userName: req.body.userName, time: req.body.time});
   res.status(201).json(item);
 });
-  //const item = Games.create(req.body.name, req.body.first_release_date);
-  //res.status(201).json(item);
 
 router.delete('/:id', (req, res) => {
   favorites.delete(req.params.id);
@@ -74,6 +71,5 @@ router.put('/:id', jsonParser, (req, res) => {
   });
   res.status(204).json(updatedItem);
 });
-
 
 module.exports = router;

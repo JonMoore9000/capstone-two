@@ -129,7 +129,6 @@ $('#clear').on('click', function() {
 $('#js-games').on('click', '.startLog', function() {
 		var game = '';
 		game = $(this).parent().find('.game');
-		//console.log(game);
 		h1.textContent = "00.00.00";
     	seconds = 0; minutes = 0; hours = 0;
 	});
@@ -173,14 +172,12 @@ function getTimesFromDB(callback) {
 function displayTimes(data) {
 	user = state.loggedIn;
 	var element = [];
-	//console.log(thing);
 
 	var thing = data.times;
 	for (var i = 0; i < thing.length ; i++) {
     if (thing[i].userName === user) {
     element.push(thing[i]);
   	}
-  	console.log(element);
   }
 
 
@@ -206,7 +203,6 @@ for(key in times){
   var result = final2.replace(/,/g, '');
 }
 
-//console.log(str);
 $('.yourTimesPage').html(result);
 
 };

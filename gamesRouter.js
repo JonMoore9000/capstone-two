@@ -4,9 +4,6 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-//Games.create(
-  //'Zelda', '03/12/2017');
-
 router.get('/', (req, res) => {
   res.json(Games.get());
 });

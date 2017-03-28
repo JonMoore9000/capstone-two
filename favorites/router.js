@@ -8,7 +8,6 @@ router.use(jsonParser);
 
 const favorite = require('./models');
 
-
 router.get('/', (req, res) => {
   favorite
     .find()
@@ -40,9 +39,7 @@ router.post('/', jsonParser, (req, res) => {
     {gameName: req.body.gameName, userName: req.body.userName});
   res.status(201).json(item);
 });
-  //const item = Games.create(req.body.name, req.body.first_release_date);
-  //res.status(201).json(item);
-
+  
 router.delete('/:id', (req, res) => {
   favorites.delete(req.params.id);
   console.log(`Deleted shopping list item \`${req.params.ID}\``);
@@ -74,6 +71,5 @@ router.put('/:id', jsonParser, (req, res) => {
   });
   res.status(204).json(updatedItem);
 });
-
 
 module.exports = router;

@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const favoriteSchema = mongoose.Schema({
@@ -33,7 +32,6 @@ favoriteSchema.methods.apiRepr = function() {
     
   };
 }
-
 
 const favorite = mongoose.model('favorites', favoriteSchema);
 
