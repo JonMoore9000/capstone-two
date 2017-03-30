@@ -5,13 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="grid.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
 </head>
 <body>
 <div class="header">
 	<div class="row">
 		<div class="col-12">
 			<div class="title">Video Game Log</div>
+			<p class="opening">This video game log app allows you create a list of your favorite games. On top of that it also lets you save time you have played for each game. When you are done recording your time you can also get a list of all of the games you have played and the accumulated times for each game.</p>
 		</div>
 		</div>
 		<div class="row">
@@ -20,6 +21,7 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="controls invisible">
 				<div class="col-4">
 					<button class="yourGames">Your Games</button>
 				</div>
@@ -29,6 +31,7 @@
 				<div class="col-4">
 					<button class="homePage">Home</button>
 				</div>
+			</div>
 		</div>
 </div>	
 <div class="row">
@@ -36,7 +39,7 @@
 <div class="yourTimesPage invisible"></div>
 </div>
 </div>
-<div class="resultsPage">
+<div class="resultsPage invisible">
 	<div class="results">
 		<div class="row">
 			<form class="js-form">
@@ -44,7 +47,7 @@
 				<button type="submit" class="findResults">Add a Game To Log</button>
 			</form>
 				<div class="timeTop invisible">
-					<h3 class="gameChoice">You are loggin time for: <h3 class="chosenGame"></h3></h3>
+					<h3 class="gameChoice">You are logging time for: <h3 class="chosenGame"></h3></h3>
 					<h1 id="headTime"><time class="timeLogged"></time></h1>
 					<button id="start">start</button>
 					<button id="stop">stop</button>

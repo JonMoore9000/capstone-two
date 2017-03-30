@@ -22,7 +22,10 @@ function getMainPage() {
 	$('.signUpPage').remove();
 	$('.loginBox').remove();
 	$('.logged-in').text(`Hello, ${state.loggedIn}`);
+	$('.opening').addClass('invisible');
 	$('.timeTop').removeClass('invisible');
+	$('.controls').removeClass('invisible');
+	$('.resultsPage').removeClass('invisible');
 }
 
 function getYourGames() {
