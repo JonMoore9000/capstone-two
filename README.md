@@ -2,7 +2,8 @@
 
 Capstone project allowing the user to create a list of video games then record playtime for each game.
 
-![capstone 2 scrn](https://cloud.githubusercontent.com/assets/22624097/24365866/f736581a-12dc-11e7-8f1e-125332e3e740.jpg)
+![screenshot](https://cloud.githubusercontent.com/assets/22624097/24523077/7bd5c534-1557-11e7-9980-384845e0c6f6.jpg) ![screenshot2](https://cloud.githubusercontent.com/assets/22624097/24523112/9105505a-1557-11e7-808d-71ed1b3b5411.jpg)
+
 
 ## Summary
 

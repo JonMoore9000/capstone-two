@@ -7,11 +7,17 @@ const state = {
 function addGame() {
 	$('.js-form').submit(function(event) {
 		event.preventDefault();
-		if(state.loggedIn.length) {
+		var game = $('.js-query').val();
+		if(state.loggedIn.length && game.length > 1) {
 			addGameToLogDB();
 			alert('Your game was added!');
 		}
-		else {
+
+		if(!game.length) {
+			alert('Gotta type something!');
+		}
+
+		if(state.loggedIn.length < 1) {
 			alert('Log in first!');
 		}
 	});
