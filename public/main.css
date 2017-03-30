@@ -6,9 +6,7 @@
 body {
 	font-family: 'Questrial', sans-serif;
 	font-size: 15px;
-	background-image: url(http://i.imgur.com/hW8tBdX.png); 
-    background-repeat: no-repeat;
-    background-position: center;
+	background-color: #323232;
 }
 
 button {
