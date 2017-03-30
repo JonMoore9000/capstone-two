@@ -6,10 +6,9 @@
 body {
 	font-family: 'Questrial', sans-serif;
 	font-size: 15px;
-	background-image: url('http://i.imgur.com/hW8tBdX.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
+	background-image: url(http://i.imgur.com/hW8tBdX.png); 
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 button {
