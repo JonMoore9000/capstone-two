@@ -36,18 +36,6 @@
 /* Bigger Than Mobile*/
 @media screen and (min-width: 600px) {
 
-  html {
-        background-image: url(http://i.imgur.com/hW8tBdX.png); 
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-    }
-
-    .html-mobile-background {
-        display: none;
-    }
-
   .col-4 {
     width: 33.33%;
   }
