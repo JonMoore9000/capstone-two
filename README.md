@@ -2,7 +2,9 @@
 
 Capstone project allowing the user to create a list of video games then record playtime for each game.
 
-![screenshot](https://cloud.githubusercontent.com/assets/22624097/24523077/7bd5c534-1557-11e7-9980-384845e0c6f6.jpg) ![screenshot2](https://cloud.githubusercontent.com/assets/22624097/24523112/9105505a-1557-11e7-808d-71ed1b3b5411.jpg)
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![screenshot](https://cloud.githubusercontent.com/assets/22624097/24523077/7bd5c534-1557-11e7-9980-384845e0c6f6.jpg)  |  ![screenshot2](https://cloud.githubusercontent.com/assets/22624097/24523112/9105505a-1557-11e7-808d-71ed1b3b5411.jpg)
 
 
 ## Summary
