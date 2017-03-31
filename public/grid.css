@@ -36,13 +36,6 @@
 /* Bigger Than Mobile*/
 @media screen and (min-width: 600px) {
 
-body {
-    background-image: url(http://i.imgur.com/hW8tBdX.png); 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 220%;
-}
-
   .col-4 {
     width: 33.33%;
   }
