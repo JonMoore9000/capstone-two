@@ -126,6 +126,7 @@ function timer() {
 
 /* Start button */
 $('#start').on('click', function() {
+	clearTimeout(t);
 	timer();
 });
 
