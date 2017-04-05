@@ -171,3 +171,7 @@ button:hover {
 	width: 300px;
 	margin: 0 auto;
 }
+
+.js-type-game {
+	color: white;
+}

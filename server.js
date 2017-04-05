@@ -10,7 +10,6 @@ const {router: usersRouter} = require('./users');
 const {router: favRouter} = require('./favorites');
 const {router: timeRouter} = require('./logs');
 const {BasicStrategy} = require('passport-http');
-//const request = require('superagent');
 
 mongoose.Promise = global.Promise;
 app.use(bodyParser.json());
@@ -22,11 +21,10 @@ app.use('/users/', usersRouter);
 app.use('/logs/', timeRouter);
 
 app.use(express.static('public'));
-//app.listen(process.env.PORT || 8080);
 
 app.use(morgan('common'));
 
-app.get('/', (req, res) => {
+app.get('/games', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
@@ -53,11 +51,6 @@ app.post('/favorites', (req, res) => {
   console.log(res.body)
   res.json(res.body); 
 });
-
-//app.post('/login', (req, res) => {
-  //console.log(res.body)
-  //res.json(res.body); 
-//});
 
 app.get('/favorites', (req, res) => {
   console.log(res.body)

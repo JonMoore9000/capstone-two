@@ -5,20 +5,25 @@ const state = {
 };
 
 function addGame() {
-	$('.js-form').submit(function(event) {
+	$('.js-form').on('submit', function(event) {
 		event.preventDefault();
 		var game = $('.js-query').val();
-		if(state.loggedIn.length && game.length > 1) {
+
+		if(state.loggedIn.length && game.length >= 1) {
 			addGameToLogDB();
-			alert('Your game was added!');
+			var added = 'Your game was added!';
+			$('.js-type-game').html(added);
+			setTimeout(function() {
+    			$('.js-type-game').fadeOut(added).html('').fadeIn();
+			}, 2000);
 		}
 
 		if(!game.length) {
-			alert('Gotta type something!');
-		}
-
-		if(state.loggedIn.length < 1) {
-			alert('Log in first!');
+			var type = 'Gotta type something!';
+			$('.js-type-game').html(type);
+			setTimeout(function() {
+    			$('.js-type-game').fadeOut(type).html('').fadeIn();
+			}, 2000);
 		}
 	});
 }
@@ -152,7 +157,11 @@ $('#js-games').on('click', '.startLog', function() {
 function logTime() {
 	$('#save').on('click', function() {
 		logTimeToDb();
-		alert('Your time was saved!')
+		var saves = 'Your time was saved!';
+		$('.js-type-game').html(saves);
+		setTimeout(function() {
+    			$('.js-type-game').fadeOut(saves).html('').fadeIn();
+			}, 2000);
 	});
 }
 
@@ -297,7 +306,8 @@ function signUpUser() {
 
 function failed() {
 	if (!state.invalidLogin) {
-		alert('Login failed!');
+		var words= 'Login failed!';
+		$('.js-login-fail').html(words);
 		state.invalidLogin = true;
 	}
 }
