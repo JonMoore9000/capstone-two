@@ -42,7 +42,7 @@ router.post('/', jsonParser, (req, res) => {
 
 router.delete('/:id', (req, res) => {
   favorites.delete(req.params.id);
-  console.log(`Deleted shopping list item \`${req.params.ID}\``);
+  console.log(`Deleted games \`${req.params.ID}\``);
   res.status(204).end();
 });
 
@@ -63,11 +63,11 @@ router.put('/:id', jsonParser, (req, res) => {
     console.error(message);
     return res.status(400).send(message);
   }
-  console.log(`Updating games list item \`${req.params.id}\``);
-  const updatedItem = Recipes.update({
+  console.log(`Updating games \`${req.params.id}\``);
+  const updatedItem = games.update({
     id: req.params.id,
     name: req.body.name,
-    date: req.body.date
+    game: req.body.game
   });
   res.status(204).json(updatedItem);
 });

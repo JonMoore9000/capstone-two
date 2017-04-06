@@ -30,17 +30,17 @@ function addGame() {
 
 function getMainPage() {
 	state.invalidLogin = false;
-	$('.signUpPage').remove();
-	$('.loginBox').remove();
+	$('.sign-up-page').remove();
+	$('.login-box').remove();
 	$('.logged-in').text(`Hello, ${state.loggedIn}`);
 	$('.opening').addClass('invisible');
-	$('.timeTop').removeClass('invisible');
+	$('.time-top').removeClass('invisible');
 	$('.controls').removeClass('invisible');
-	$('.resultsPage').removeClass('invisible');
+	$('.results-page').removeClass('invisible');
 }
 
 function getYourGames() {
-	$('.yourGames').click(function(event) {
+	$('.your-games').click(function(event) {
 		event.preventDefault();
 		getGamesFromDB(displayGames);
 	});
@@ -84,8 +84,8 @@ function displayGames(data) {
     	}
 	}
 	 var result = element.map(function(item) {
-		return '<div class="eachOne"><p class="game">' + item.gameName + '</p>'
-		+'<button class="startLog">Log</button>'
+		return '<div class="each-one"><p class="game">' + item.gameName + '</p>'
+		+'<button class="start-log">Log</button>'
 		+'</div>'
 	});
 	
@@ -96,12 +96,12 @@ function chooseGame() {
 	$('#js-games').on('click', '.startLog', function() {
 		var game = '';
 		game = $(this).parent().find('.game');
-		$('.chosenGame').html(game.clone());
+		$('.chosen-game').html(game.clone());
 	});
 }
 
 function  timeKeeper() { 
-	var h1 = $('#headTime')[0],
+	var h1 = $('#head-time')[0],
     start = $('#start'),
     stop = $('#stop'),
     clear = $('#clear'),
@@ -146,7 +146,7 @@ $('#clear').on('click', function() {
     seconds = 0; minutes = 0; hours = 0;
 });
 
-$('#js-games').on('click', '.startLog', function() {
+$('#js-games').on('click', '.start-log', function() {
 		var game = '';
 		game = $(this).parent().find('.game');
 		h1.textContent = "00.00.00";
@@ -167,8 +167,8 @@ function logTime() {
 
 function logTimeToDb() {
 	var user = state.loggedIn;
-	var game = $('.chosenGame').text();
-	var time = $('#headTime').text();
+	var game = $('.chosen-game').text();
+	var time = $('#head-time').text();
 	$.ajax({
             type: 'POST',
             dataType: 'json',
@@ -227,28 +227,28 @@ for(key in times){
   var result = final2.replace(/,/g, '');
 }
 
-$('.yourTimesPage').html(result);
+$('.your-times-page').html(result);
 
 };
 
 function timePage() {
-	$('.yourTime').on('click', function() {
-	$('.resultsPage').addClass('invisible');
-	$('.yourTimesPage').removeClass('invisible');
+	$('.your-time').on('click', function() {
+	$('.results-page').addClass('invisible');
+	$('.your-times-page').removeClass('invisible');
 	getTimesFromDB(displayTimes);;
 	});
 }
 
 function homePage( ){
-	$('.homePage').on('click', function() {
-		$('.yourTimesPage').addClass('invisible');
-		$('.resultsPage').removeClass('invisible');
+	$('.home-page').on('click', function() {
+		$('.your-times-page').addClass('invisible');
+		$('.results-page').removeClass('invisible');
 	});
 }
 
 
 // login listener
-$('.loginForm').on('submit', function(e) {
+$('.login-form').on('submit', function(e) {
     e.preventDefault();
     	var username =  $('#username').val();
     	var password = $('#password').val();
@@ -271,13 +271,13 @@ function loginUser(username, password) {
 }
 
 function signUp() {
-	$('.signUpBtn').on('click', function() {
-		$('.signUpPage').removeClass('invisible');
-		$('.loginBox').addClass('invisible');
+	$('.sign-up-btn').on('click', function() {
+		$('.sign-up-page').removeClass('invisible');
+		$('.login-box').addClass('invisible');
 	});
 }
 
-$('.signUpForm').on('submit', function(e) {
+$('.sign-up-form').on('submit', function(e) {
 	e.preventDefault();
 	signUpUser();
 });
@@ -285,8 +285,8 @@ $('.signUpForm').on('submit', function(e) {
 
 //Post request on new user sign up
 function signUpUser() {
-	var newUsername = $('#newUsername').val();
-	var newPassword = $('#newPassword').val();
+	var newUsername = $('#new-username').val();
+	var newPassword = $('#new-password').val();
     $.ajax({
             type: 'POST',
             url: '/users',

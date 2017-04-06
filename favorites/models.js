@@ -24,15 +24,6 @@ const favorites = {
    }
 };
 
-favoriteSchema.methods.apiRepr = function() {
-
-  return {
-    userName: this.userName,
-    gameName: this.gameName,
-    
-  };
-}
-
 const favorite = mongoose.model('favorites', favoriteSchema);
 
 module.exports = favorite;
