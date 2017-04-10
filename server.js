@@ -47,16 +47,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.post('/favorites', (req, res) => {
-  console.log(res.body)
-  res.json(res.body); 
-});
-
-app.get('/favorites', (req, res) => {
-  console.log(res.body)
-  res.json(res.body); 
-});
-
 let server;
 
 function runServer() { 
@@ -73,9 +63,9 @@ function runServer() {
                 mongoose.disconnect();
                 reject(err);
             });
-        })
         });
-    };
+    });
+};
 
 function closeServer() {
     return mongoose.disconnect().then(() => {
@@ -87,7 +77,7 @@ function closeServer() {
                 }
                 resolve();
             });
-    });
+        });
     });
 }
 
