@@ -47,6 +47,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.post('/login', (req, res) => {
+  console.log(res.body)
+  res.json(res.body); 
+  });
+
 let server;
 
 function runServer() { 
