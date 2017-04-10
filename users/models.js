@@ -13,7 +13,7 @@ const UserSchema = mongoose.Schema({
   },
 });
 
-serSchema.methods.apiRepr = function() {
+UserSchema.methods.apiRepr = function() {
   return {
     username: this.username || '',
     password: this.hashPassword ||
