@@ -48,9 +48,18 @@ app.use(function(req, res, next) {
 });
 
 app.post('/login', (req, res) => {
-  console.log(res.body)
+  //console.log(res.body)
   res.json(res.body); 
   });
+
+app.post('/favorites', (req, res) => {
+  res.json(res.body); 
+  });
+
+app.get('/favorites', (req, res) => {
+  res.json(res.body); 
+  });
+
 
 let server;
 
