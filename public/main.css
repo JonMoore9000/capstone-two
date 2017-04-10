@@ -9,10 +9,6 @@ body {
 	background-color: #323232;
 }
 
-p {
-	color: white;
-}
-
 button {
 	font-size: 20px;
 	background-color: transparent;
@@ -23,10 +19,6 @@ button {
 input {
 	font-size: 15px;
 	margin-top: 15px;
-}
-
-label {
-	color: white;
 }
 
 button:hover {
@@ -59,15 +51,15 @@ button:hover {
 	color: white;
 }
 
-.favListBtn {
+.fav-list-btn {
 	text-align: center;
 }
 
-.loginBtn {
+.login-btn {
 	margin-top: 10px;
 }
 
-.signUpUserBtn {
+.sign-up-user-btn {
 	margin-top: 10px;
 }
 
@@ -75,7 +67,7 @@ button:hover {
 	font-family: 'Questrial', sans-serif;
 }
 
-.yourTimesPage {
+.your-times-page {
 	color: #dd5757;
 	font-weight: bold;
 	background-color: white;
@@ -83,36 +75,35 @@ button:hover {
 	padding: 10px;
 }
 
-.eachOne {
+.each-one {
 	border: 2px solid white;
 	margin-bottom: 10px;
 }
 
-.eachOne:hover {
+.each-one:hover {
 	border: 2px solid white;
 }
 
-.thisOne {
+.this-ine {
 	border: 2px solid yellow;
 	margin-bottom: 10px;
 }
 
-.thisOne:hover {
+.this-one:hover {
 	border: 2px solid green;
 }
 
-.timeTop {
+.time-top {
 	border: 2px solid white;
 	margin-bottom: 10px;
 }
 
-.gameChoice {
+.game-choice {
 	background-color: black;
 	color: white;
 	padding: 5px;
 }
-
-#headTime {
+#head-time {
 	color: white;
 }
 
@@ -121,7 +112,7 @@ button:hover {
 	font-size: 20px;
 }
 
-.gameChoice {
+.game-choice {
 	font-family: 'Questrial', sans-serif;
 }
 
@@ -129,32 +120,32 @@ button:hover {
 	display: none;
 }
 
-.favList {
+.fav-list {
 	display: block;
 }
 
-.yourGames, .yourTime, .homePage {
+.your-games, .your-time, .home-page {
 	width: 100%;
 	border: 1px solid white;
 	padding: 3px;
 }
 
-.homePage:hover {
+.home-page:hover {
 	background-color: white;
 	color: #dd5757;
 }
 
-.yourGames:hover {
+.your-games:hover {
 	background-color: white;
 	color: #dd5757;
 }
 
-.yourTime:hover {
+.your-time:hover {
 	background-color: white;
 	color: #dd5757;
 }
 
-.signUpPage {
+.sign-up-page {
 	padding: 8px;
 	margin: 0 auto;
 	text-align: center;
@@ -163,7 +154,7 @@ button:hover {
 	border: 1px solid white;
 }
 
-.loginBox {
+.login-box {
 	padding: 8px;
 	margin: 0 auto;
 	text-align: center;
@@ -172,13 +163,13 @@ button:hover {
 	border: 1px solid white;
 }
 
-.signUpBox {
+.sign-up-box {
 	padding: 10px;
 	width: 300px;
 	margin: 0 auto;
 }
 
-.loginForm {
+.login-form {
 	padding: 10px;
 	width: 300px;
 	margin: 0 auto;
