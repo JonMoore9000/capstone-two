@@ -55,6 +55,10 @@ button:hover {
 	color: #dd5757;
 }
 
+.js-login-fail {
+	color: white;
+}
+
 .favListBtn {
 	text-align: center;
 }
