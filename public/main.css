@@ -21,6 +21,10 @@ input {
 	margin-top: 15px;
 }
 
+label {
+	color: white;
+}
+
 button:hover {
 	color: #dd5757;
 }
