@@ -24,7 +24,7 @@ app.use(express.static('public'));
 
 app.use(morgan('common'));
 
-app.get('/games', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
