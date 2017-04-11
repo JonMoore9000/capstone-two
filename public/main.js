@@ -11,7 +11,10 @@ function addGame() {
 
 		if(state.loggedIn.length && game.length >= 1) {
 			addGameToLogDB();
-			getYourGames();
+			$('.your-times-page').addClass('invisible');
+			$('.results-page').removeClass('invisible');
+			getGamesFromDB(displayGames);
+			
 			var added = 'Your game was added!';
 			$('.js-type-game').html(added);
 			setTimeout(function() {
