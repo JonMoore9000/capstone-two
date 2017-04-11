@@ -11,7 +11,7 @@ function addGame() {
 
 		if(state.loggedIn.length && game.length >= 1) {
 			addGameToLogDB();
-			getGamesFromDB(displayGames);
+			getYourGames();
 			var added = 'Your game was added!';
 			$('.js-type-game').html(added);
 			setTimeout(function() {
