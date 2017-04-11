@@ -16,6 +16,7 @@ function addGame() {
 			setTimeout(function() {
     			$('.js-type-game').fadeOut(added).html('').fadeIn();
 			}, 2000);
+			getGamesFromDB(displayGames);
 		}
 
 		if(!game.length) {
