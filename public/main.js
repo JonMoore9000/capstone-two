@@ -37,6 +37,7 @@ function getMainPage() {
 	$('.time-top').removeClass('invisible');
 	$('.controls').removeClass('invisible');
 	$('.results-page').removeClass('invisible');
+	$('.your-times-page').removeClass('invisible');
 }
 
 function getYourGames() {
