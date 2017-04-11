@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     .then(times => {
       res.json({
         times: times.map(
-          (time) => time.apiRepr())
+          (time) => time)
       });
     })
     .catch(
