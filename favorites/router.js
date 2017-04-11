@@ -9,13 +9,13 @@ router.use(jsonParser);
 const favorite = require('./models');
 
 router.get('/', (req, res) => {
-  return favorite
+  favorite
     .find()
     .exec()
     .then(favorites => {
       res.json({
         favorites: favorites.map(
-          (favorite) => favorite.apiRepr())
+          (favorite) => favorite)
       });
     })
     .catch(
