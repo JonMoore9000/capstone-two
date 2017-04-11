@@ -11,12 +11,12 @@ function addGame() {
 
 		if(state.loggedIn.length && game.length >= 1) {
 			addGameToLogDB();
+			getGamesFromDB(displayGames);
 			var added = 'Your game was added!';
 			$('.js-type-game').html(added);
 			setTimeout(function() {
     			$('.js-type-game').fadeOut(added).html('').fadeIn();
 			}, 2000);
-			getGamesFromDB(displayGames);
 		}
 
 		if(!game.length) {
