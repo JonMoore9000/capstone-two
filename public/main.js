@@ -93,7 +93,7 @@ function displayGames(data) {
 };
 
 function chooseGame() {
-	$('#js-games').on('click', '.startLog', function() {
+	$('#js-games').on('click', '.start-log', function() {
 		var game = '';
 		game = $(this).parent().find('.game');
 		$('.chosen-game').html(game.clone());
