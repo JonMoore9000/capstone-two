@@ -9,7 +9,7 @@ router.use(jsonParser);
 const favorite = require('./models');
 
 router.get('/', (req, res) => {
-  favorite
+  return favorite
     .find()
     .exec()
     .then(favorites => {
