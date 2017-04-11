@@ -42,6 +42,7 @@ function getMainPage() {
 function getYourGames() {
 	$('.your-games').click(function(event) {
 		$('.your-times-page').addClass('invisible');
+		$('.results-page').removeClass('invisible');
 		event.preventDefault();
 		getGamesFromDB(displayGames);
 	});
