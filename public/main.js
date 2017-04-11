@@ -37,11 +37,11 @@ function getMainPage() {
 	$('.time-top').removeClass('invisible');
 	$('.controls').removeClass('invisible');
 	$('.results-page').removeClass('invisible');
-	$('.your-times-page').removeClass('invisible');
 }
 
 function getYourGames() {
 	$('.your-games').click(function(event) {
+		$('.your-times-page').removeClass('invisible');
 		event.preventDefault();
 		getGamesFromDB(displayGames);
 	});
