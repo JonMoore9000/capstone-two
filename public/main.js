@@ -46,7 +46,7 @@ function deleteGame() {
 }
 
 function removeGame() { 
-	var id = $(this).parent().attr('id');
+	var id = $('eaceh-on').attr('id');
 	console.log(id);
 	$.ajax({
 		type: 'DELETE',
