@@ -14,7 +14,7 @@ function addGame() {
 			$('.your-times-page').addClass('invisible');
 			$('.results-page').removeClass('invisible');
 			getGamesFromDB(displayGames);
-			
+
 			var added = 'Your game was added!';
 			$('.js-type-game').html(added);
 			setTimeout(function() {
@@ -30,6 +30,25 @@ function addGame() {
 			}, 2000);
 		}
 	});
+}
+
+function deleteGame() {
+	$('#delete').on('click', function() {
+		removeGame();
+		var gone = 'Your time was deleted!';
+		$('.js-type-game').html(gone);
+		setTimeout(function() {
+    			$('.js-type-game').fadeOut(gone).html('').fadeIn();
+			}, 2000);
+	}
+}
+
+function removeGame() {
+	$.ajax({
+		type: 'DELETE',
+		dataType: 'json',
+		url: '/favorites',
+	})
 }
 
 function getMainPage() {
