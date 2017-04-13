@@ -51,7 +51,8 @@ function removeGame() {
 	$.ajax({
 		type: 'DELETE',
 		dataType: 'json',
-		url: '/favorites/' + id,
+		url: '/favorites' + '/' + id,
+		success: getYourGames();
 	})
 }
 
