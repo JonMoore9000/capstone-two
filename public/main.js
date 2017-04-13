@@ -46,13 +46,12 @@ function deleteGame() {
 }
 
 function removeGame() { 
-	var id ='';
-	id = $(this).parent().find('.game');
+	var id = ('.each-one').data('id');
 	console.log(id);
 	$.ajax({
 		type: 'DELETE',
 		dataType: 'json',
-		url: '/favorites' + id,
+		url: '/favorites/' + id,
 	})
 }
 
