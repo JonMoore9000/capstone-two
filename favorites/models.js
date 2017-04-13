@@ -9,7 +9,7 @@ const favoriteSchema = mongoose.Schema({
   userName: {
     type: String,
     required: true,
-  }
+  },
   id: uuid.v4(),
 });
 
