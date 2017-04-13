@@ -9,8 +9,7 @@ const favoriteSchema = mongoose.Schema({
   userName: {
     type: String,
     required: true,
-  },
-  id: uuid.v4(),
+  }
 });
 
 const favorite = mongoose.model('favorites', favoriteSchema);
