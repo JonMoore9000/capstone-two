@@ -118,7 +118,7 @@ function displayGames(data) {
 		+'<button class="delete">Delete</button>'
 		+'</div>'
 	});
-	console.log(data.('id'))
+	
 		$('#js-games').html(result);
 };
 
