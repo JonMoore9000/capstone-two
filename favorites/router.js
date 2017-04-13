@@ -39,12 +39,22 @@ router.post('/', jsonParser, (req, res) => {
     {gameName: req.body.gameName, userName: req.body.userName});
   res.status(201).json(item);
 });
+
+router.delete('/:id', (req, res) => {
+    favorite
+        .findByIdAndRemove(req.params.id)
+        .exec()
+        .then(() => {
+            console.log(`Deleted Post with id \"${req.params.id}\"`);
+            res.status(204).end();
+        });
+  });
   
-router.delete('/id', (req, res) => {
-  favorite.delete(req.params.id);
-  console.log(`Deleting game \`${req.params.ID}\``);
-  res.status(204).end();
-});
+//router.delete('/gameName', (req, res) => {
+  //favorite.delete(req.params.gameName);
+  //console.log(`Deleting game \`${req.params.gameName}\``);
+  //res.status(204).end();
+//});
 
 router.put('/:id', jsonParser, (req, res) => {
   const requiredFields = ['name', 'date', 'id'];

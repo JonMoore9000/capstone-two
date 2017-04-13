@@ -41,9 +41,10 @@ function deleteGame() {
 	$.ajax({
 		type: 'DELETE',
 		dataType: 'json',
+		contentType: 'application/json; charset=utf-8',
 		url: '/favorites' + '/' + id,
-		success: getYourGames(),
 	})
+	.done(getGamesFromDB(displayGames));
 		var gone = 'Your time was deleted!';
 		$('.js-type-game').html(gone);
 		setTimeout(function() {
@@ -122,7 +123,7 @@ function displayGames(data) {
     	}
 	}
 	 var result = element.map(function(item) {
-		return '<div class="each-one" data-id="' + item.gameName + '"><p class="game">' + item.gameName + '</p>'
+		return '<div class="each-one" data-id="' + item._id + '"><p class="game">' + item.gameName + '</p>'
 		+'<button class="start-log">Log</button>'
 		+'<button class="delete">Delete</button>'
 		+'</div>'
