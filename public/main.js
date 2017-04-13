@@ -111,6 +111,7 @@ function displayGames(data) {
 	 var result = element.map(function(item) {
 		return '<div class="each-one"><p class="game">' + item.gameName + '</p>'
 		+'<button class="start-log">Log</button>'
+		+'<button id="delete">delete</button>'
 		+'</div>'
 	});
 	
