@@ -52,7 +52,7 @@ function removeGame() {
 		type: 'DELETE',
 		dataType: 'json',
 		url: '/favorites' + '/' + id,
-		success: getYourGames();
+		success: getYourGames(),
 	})
 }
 
