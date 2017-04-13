@@ -41,8 +41,8 @@ router.post('/', jsonParser, (req, res) => {
 });
   
 router.delete('/:id', (req, res) => {
-  favorites.delete(req.params.id);
-  console.log(`Deleted games \`${req.params.ID}\``);
+  favorite.delete(req.params.id);
+  console.log(`Deleting game \`${req.params.ID}\``);
   res.status(204).end();
 });
 
