@@ -33,7 +33,7 @@ function addGame() {
 }
 
 function deleteGame() {
-	$('.delete').on('click', function(event) {
+	$('#js-games').on('click', '.delete', function(event) {
 		event.preventDefault();
 		console.log('delete button works')
 		removeGame();
@@ -113,7 +113,7 @@ function displayGames(data) {
 	 var result = element.map(function(item) {
 		return '<div class="each-one"><p class="game">' + item.gameName + '</p>'
 		+'<button class="start-log">Log</button>'
-		+'<button class="delete">delete</button>'
+		+'<button class="delete">Delete</button>'
 		+'</div>'
 	});
 	
