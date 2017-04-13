@@ -352,6 +352,7 @@ function failedLogin () {
 
 $(function(){
 	chooseGame();
+	deleteGame();
 	addGame();
 	signUp();
 	getYourGames();
