@@ -36,7 +36,7 @@ function deleteGame() {
 	$('#js-games').on('click', '.delete', function(event) {
 		event.preventDefault();
 		console.log('delete button works')
-		id = $(this).parent().find('.game');
+		var id = $(this).parent().find('.game');
 		console.log(id);
 	$.ajax({
 		type: 'DELETE',
