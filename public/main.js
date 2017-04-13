@@ -46,10 +46,12 @@ function deleteGame() {
 }
 
 function removeGame() {
+	var id = $(this).parent().find('data-id'); 
+	console.log(id);
 	$.ajax({
 		type: 'DELETE',
 		dataType: 'json',
-		url: '/favorites',
+		url: '/favorites' + id,
 	})
 }
 
@@ -111,7 +113,7 @@ function displayGames(data) {
     	}
 	}
 	 var result = element.map(function(item) {
-		return '<div class="each-one"><p class="game">' + item.gameName + '</p>'
+		return '<div class="each-one" data-id="' + item._id.$oid + '"><p class="game">' + item.gameName + '</p>'
 		+'<button class="start-log">Log</button>'
 		+'<button class="delete">Delete</button>'
 		+'</div>'
