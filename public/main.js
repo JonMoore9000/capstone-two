@@ -40,7 +40,7 @@ function deleteGame() {
 		setTimeout(function() {
     			$('.js-type-game').fadeOut(gone).html('').fadeIn();
 			}, 2000);
-	}
+	})
 }
 
 function removeGame() {
