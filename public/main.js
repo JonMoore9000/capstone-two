@@ -46,7 +46,7 @@ function deleteGame() {
 }
 
 function removeGame() { 
-	var id = $('each-on').attr('id');
+	var id = $('each-one').attr('id');
 	console.log(id);
 	$.ajax({
 		type: 'DELETE',
