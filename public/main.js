@@ -36,7 +36,7 @@ function deleteGame() {
 	$('#js-games').on('click', '.delete', function(event) {
 		event.preventDefault();
 		console.log('delete button works')
-		var id = $(this).data('id');
+		var id = $(this).parent().find('.game');
 		console.log(id);
 	$.ajax({
 		type: 'DELETE',
@@ -47,7 +47,7 @@ function deleteGame() {
 		var gone = 'Your time was deleted!';
 		$('.js-type-game').html(gone);
 		setTimeout(function() {
-    			$('.js-type-game').fadeOut(gone).html('').fadeIn();
+    		$('.js-type-game').fadeOut(gone).html('').fadeIn();
 			}, 2000);
 	})
 }
