@@ -56,10 +56,6 @@ router.delete('/:id', (req, res) => {
         });
   });
 
-//logs.delete('/', (res, res) => {
-  //time
-//}
-
 router.put('/:id', jsonParser, (req, res) => {
   const requiredFields = ['name', 'date', 'id'];
   for (let i=0; i<requiredFields.length; i++) {

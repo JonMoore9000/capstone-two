@@ -200,7 +200,7 @@ $('.js-games').on('click', '.start-log', function() {
 
 function logTime() {
 	$('#save').on('click', function() {
-		var gameLogged = $('.chosen-game').html();
+		var gameLogged = $('.chosen-game').htmlgit ();
 	if(!gameLogged.length) {
 		var saves = 'Choose a game!';
 		$('.js-type-game').html(saves);

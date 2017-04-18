@@ -40,17 +40,6 @@ router.post('/', jsonParser, (req, res) => {
   res.status(201).json(item);
 });
 
-//router.delete('/', (req, res) => {
-  //let id = req.body.gameName || req.query.gameName;
-    //time
-       //.find({'gameName':  req.query.gameName})
-       //.exec()
-       //.then(() => {
-        //console.log(`Deleted time with name \"${req.params.gameName}\"`);
-        //res.status(204).end();
-    //});
-//});
-
 router.delete('/', (req, res) => {
     time
         .findByValueAndRemove(req.query.gameName)
