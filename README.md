@@ -10,7 +10,7 @@ Pre Log In           |  Logged In
 
 ## Summary
 
-The Video Game Log lets users first input the names of the games they love to play. The the user can review their list of games and from that list choose which game they want to record. They can save their times then retrieve all of their accumulated times for each game. 
+The Video Game Log lets users first input the names of the games they love to play. Then the user can review their list of games and from that list choose which game they want to record. They can save their times then retrieve all of their accumulated times for each game. 
 
 ## Tech
 
