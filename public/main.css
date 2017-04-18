@@ -19,6 +19,8 @@ button {
 input {
 	font-size: 15px;
 	margin-top: 15px;
+	border-radius: 3px;
+	border: 1px solid transparent;
 }
 
 button:hover {
@@ -39,6 +41,7 @@ button:hover {
 	background-image: url(http://www.volt.com/uploadedImages/Blog/how_to_get_a_job_as_a_video_game_tester_banner.jpg);
 	background-size: cover;
 	background-position: center;
+	border-radius: 3px;
 }
 
 .opening {
@@ -82,8 +85,23 @@ button:hover {
 	margin-top: 10px;
 }
 
+.sign-up-info {
+	font-size: 16px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #dd5757;
+}
+
 .sign-up-user-btn {
 	margin-top: 10px;
+	background-color: #dd5757;
+	padding: 8px;
+	border-radius: 3px;
+}
+
+.sign-up-user-btn:hover {
+	background-color: white;
+	color: #dd5757;
 }
 
 .date {
@@ -106,24 +124,17 @@ button:hover {
 	border: 2px solid white;
 	margin-bottom: 10px;
 	text-transform: uppercase;
+	border-radius: 3px;
 }
 
 .each-one:hover {
 	border: 2px solid white;
 }
 
-.this-ine {
-	border: 2px solid yellow;
-	margin-bottom: 10px;
-}
-
-.this-one:hover {
-	border: 2px solid green;
-}
-
 .time-top {
 	border: 2px solid white;
 	margin-bottom: 10px;
+	border-radius: 3px;
 }
 
 .game-choice {
@@ -182,6 +193,9 @@ button:hover {
 }
 
 .sign-up-page {
+	background-image: url(http://www.volt.com/uploadedImages/Blog/how_to_get_a_job_as_a_video_game_tester_banner.jpg);
+	background-size: cover;
+	background-position: center;
 	padding: 8px;
 	margin: 0 auto;
 	text-align: center;
