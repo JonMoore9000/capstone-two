@@ -47,8 +47,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/logs', (req, res) => {
+  res.send(req.params.userName);
+  res.json(res.body);
+});
+
 app.post('/login', (req, res) => {
-  //console.log(res.body)
   res.json(res.body); 
   });
 
