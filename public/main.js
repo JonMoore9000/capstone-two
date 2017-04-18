@@ -8,20 +8,17 @@ function addGame() {
 	$('.js-form').on('submit', function(event) {
 		event.preventDefault();
 		var game = $('.js-query').val();
-
 		if(state.loggedIn.length && game.length >= 1) {
 			addGameToLogDB();
 			$('.your-times-page').addClass('invisible');
 			$('.results-page').removeClass('invisible');
 			getGamesFromDB(displayGames);
-
 			var added = 'Your game was added!';
 			$('.js-type-game').html(added);
 			setTimeout(function() {
     			$('.js-type-game').fadeOut(added).html('').fadeIn();
 			}, 2000);
 		}
-
 		if(!game.length) {
 			var type = 'Gotta type something!';
 			$('.js-type-game').html(type);
@@ -32,11 +29,13 @@ function addGame() {
 	});
 }
 
+//will delete game and associated log
 function deleteGame() {
-	$('#js-games').on('click', '.delete', function(event) {
+	$('.js-games').on('click', '.delete', function(event) {
 		event.preventDefault();
 		console.log('delete button works')
 		var id = $(this).parent().data('id');
+		var game = $(this).parent().find('.game');
 		console.log(id);
 	$.ajax({
 		type: 'DELETE',
@@ -44,12 +43,7 @@ function deleteGame() {
 		contentType: 'application/json; charset=utf-8',
 		url: '/favorites' + '/' + id,
 	})
-	.done(getGamesFromDB(displayGames));
-		var gone = 'Your time was deleted!';
-		$('.js-type-game').html(gone);
-		setTimeout(function() {
-    		$('.js-type-game').fadeOut(gone).html('').fadeIn();
-			}, 2000);
+		.done(getGamesFromDB(displayGames));
 	})
 }
 
@@ -124,16 +118,16 @@ function displayGames(data) {
 	}
 	 var result = element.map(function(item) {
 		return '<div class="each-one" data-id="' + item._id + '"><p class="game">' + item.gameName + '</p>'
-		+'<button class="start-log">Log</button>'
-		+'<button class="delete">Delete</button>'
+		+'<button class="start-log">log</button>'
+		+'<button class="delete">delete</button>'
 		+'</div>'
 	});
 	
-		$('#js-games').html(result);
+		$('.js-games').html(result);
 };
 
 function chooseGame() {
-	$('#js-games').on('click', '.start-log', function() {
+	$('.js-games').on('click', '.start-log', function() {
 		var game = '';
 		game = $(this).parent().find('.game');
 		$('.chosen-game').html(game.clone());
@@ -171,8 +165,18 @@ function timer() {
 
 /* Start button */
 $('#start').on('click', function() {
-	clearTimeout(t);
-	timer();
+	var chosen = $('.chosen-game').val();
+	if(chosen.length) {
+		clearTimeout(t);
+		timer();
+	}
+	if(!chosen.length) {
+		var added = 'Choose a game!';
+		$('.js-type-game').html(added);
+		setTimeout(function() {
+    		$('.js-type-game').fadeOut(added).html('').fadeIn();
+		}, 2000);
+	}
 });
 
 /* Stop button */
@@ -186,7 +190,7 @@ $('#clear').on('click', function() {
     seconds = 0; minutes = 0; hours = 0;
 });
 
-$('#js-games').on('click', '.start-log', function() {
+$('.js-games').on('click', '.start-log', function() {
 		var game = '';
 		game = $(this).parent().find('.game');
 		h1.textContent = "00.00.00";
@@ -196,12 +200,22 @@ $('#js-games').on('click', '.start-log', function() {
 
 function logTime() {
 	$('#save').on('click', function() {
+		var gameLogged = $('.chosen-game').val();
+		if(gameLogged.length) {
 		logTimeToDb();
 		var saves = 'Your time was saved!';
 		$('.js-type-game').html(saves);
 		setTimeout(function() {
-    			$('.js-type-game').fadeOut(saves).html('').fadeIn();
-			}, 2000);
+    		$('.js-type-game').fadeOut(saves).html('').fadeIn();
+		}, 2000);
+	}
+	if(!gameLogged.length) {
+		var saves = 'Choose a game!';
+		$('.js-type-game').html(saves);
+		setTimeout(function() {
+    		$('.js-type-game').fadeOut(saves).html('').fadeIn();
+		}, 2000);
+	}
 	});
 }
 
@@ -221,6 +235,7 @@ function logTimeToDb() {
 }
 
 function getTimesFromDB(callback) {
+	var user = state.loggedIn;
 	$.ajax({
 		type: 'GET',
 		dataType: 'json',
@@ -228,23 +243,29 @@ function getTimesFromDB(callback) {
 		'headers': {
 			"content-type": "application/json",
 		},
-		'data': 'gameName, userName, time',
+		'data': {
+			'userName': user,
+		},
 		success: callback,
 	})
 }
 
-function displayTimes(data) {
+function displyayUserTimes(data) {
 	user = state.loggedIn;
 	var element = [];
+	var element = data.map(function(item) {
+		return '<p>' + item.times + '</p>';
+	});
+	
+		$('.your-times-page').html(result);
+};
 
-	var thing = data.times;
-	for (var i = 0; i < thing.length ; i++) {
-    if (thing[i].userName === user) {
-    element.push(thing[i]);
-  	}
-  }
+function displayTimes(data) {
+	user = state.loggedIn;
+	var element = data.times;
 
-
+var logsDisplay = data.times.map(function(item) {
+ 
 var times = _.groupBy(element, "gameName");
 let game_times = {};
 for(key in times){
@@ -265,10 +286,9 @@ for(key in times){
   var final1 = final.replace(/{/g, '');
   var final2 = final1.replace(/}/g, '');
   var result = final2.replace(/,/g, '');
-}
-
-$('.your-times-page').html(result);
-
+  }
+	$('.your-times-page').html(result);
+});
 };
 
 function timePage() {
@@ -285,7 +305,6 @@ function homePage( ){
 		$('.results-page').removeClass('invisible');
 	});
 }
-
 
 // login listener
 $('.login-form').on('submit', function(e) {

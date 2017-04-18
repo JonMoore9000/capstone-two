@@ -68,16 +68,21 @@ button:hover {
 }
 
 .your-times-page {
-	color: #dd5757;
+	color: white;
 	font-weight: bold;
-	background-color: white;
+	background-color: transparent;
 	font-size: 20px;
 	padding: 10px;
+	padding-bottom: 10px;
+	letter-spacing: 1px;
+	line-height: 30px;
+	text-transform: uppercase;
 }
 
 .each-one {
 	border: 2px solid white;
 	margin-bottom: 10px;
+	text-transform: uppercase;
 }
 
 .each-one:hover {
@@ -114,6 +119,10 @@ button:hover {
 
 .game-choice {
 	font-family: 'Questrial', sans-serif;
+}
+
+.chosen-game {
+	text-transform: uppercase;
 }
 
 .invisible {
