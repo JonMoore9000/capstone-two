@@ -4,8 +4,7 @@ Capstone project allowing the user to create a list of video games then record p
 
 Pre Log In           |  Logged In
 :-------------------------:|:-------------------------:
-![pre-login-1](https://cloud.githubusercontent.com/assets/22624097/25152206/e4d96cd4-244d-11e7-93ef-b1c7ac31ecee.jpg)
-  |  ![logged-in-1](https://cloud.githubusercontent.com/assets/22624097/25152236/f770e750-244d-11e7-8407-b85b029833b6.jpg)
+![pre-login-1](https://cloud.githubusercontent.com/assets/22624097/25152206/e4d96cd4-244d-11e7-93ef-b1c7ac31ecee.jpg)  |  ![logged-in-1](https://cloud.githubusercontent.com/assets/22624097/25152236/f770e750-244d-11e7-8407-b85b029833b6.jpg)
 
 
 
