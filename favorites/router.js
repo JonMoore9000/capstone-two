@@ -7,6 +7,7 @@ const uuid = require('uuid');
 router.use(jsonParser);
 
 const favorite = require('./models');
+const time = require('../logs/models');
 
 router.get('/', (req, res) => {
   favorite
@@ -44,17 +45,20 @@ router.delete('/:id', (req, res) => {
     favorite
         .findByIdAndRemove(req.params.id)
         .exec()
-        .then(() => {
-            console.log(`Deleted Post with id \"${req.params.id}\"`);
-            res.status(204).end();
+        .then((game) => {
+            console.log(`Deleted game with id \"${req.params.id}\"`);
+            console.log(game)
+            time
+            .deleteOne({gameName: game.gameName})
+            .then(() => {
+              res.status(204).end();
+            })
         });
   });
-  
-//router.delete('/gameName', (req, res) => {
-  //favorite.delete(req.params.gameName);
-  //console.log(`Deleting game \`${req.params.gameName}\``);
-  //res.status(204).end();
-//});
+
+//logs.delete('/', (res, res) => {
+  //time
+//}
 
 router.put('/:id', jsonParser, (req, res) => {
   const requiredFields = ['name', 'date', 'id'];

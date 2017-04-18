@@ -10,7 +10,7 @@ const time = require('./models');
 
 router.get('/', (req, res) => {
   time
-    .find()
+    .find({'userName':  req.query.userName}) 
     .exec()
     .then(times => {
       res.json({
@@ -40,11 +40,26 @@ router.post('/', jsonParser, (req, res) => {
   res.status(201).json(item);
 });
 
-router.delete('/:id', (req, res) => {
-  favorites.delete(req.params.id);
-  console.log(`Deleted games \`${req.params.ID}\``);
-  res.status(204).end();
-});
+//router.delete('/', (req, res) => {
+  //let id = req.body.gameName || req.query.gameName;
+    //time
+       //.find({'gameName':  req.query.gameName})
+       //.exec()
+       //.then(() => {
+        //console.log(`Deleted time with name \"${req.params.gameName}\"`);
+        //res.status(204).end();
+    //});
+//});
+
+router.delete('/', (req, res) => {
+    time
+        .findByValueAndRemove(req.query.gameName)
+        .exec()
+        .then(() => {
+            console.log(`Deleted game time with name \"${req.query.gameName}\"`);
+            res.status(204).end();
+        });
+  });
 
 router.put('/:id', jsonParser, (req, res) => {
   const requiredFields = ['name', 'date', 'id'];
