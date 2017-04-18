@@ -31,4 +31,4 @@ This project used multiple technologies:
 
 My Video Game Log App is available on Heroku: [Video Game Log][app]
 
-[app]: <https://immense-chamber-87502.herokuapp.com/>
+[app]: <https://new-thing09.herokuapp.com/>
