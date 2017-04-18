@@ -165,17 +165,17 @@ function timer() {
 
 /* Start button */
 $('#start').on('click', function() {
-	var chosen = $('.chosen-game').val();
-	if(chosen.length) {
-		clearTimeout(t);
-		timer();
-	}
+	var chosen = $('.chosen-game').html();
 	if(!chosen.length) {
 		var added = 'Choose a game!';
 		$('.js-type-game').html(added);
 		setTimeout(function() {
     		$('.js-type-game').fadeOut(added).html('').fadeIn();
 		}, 2000);
+	}
+	else {
+		clearTimeout(t);
+		timer();
 	}
 });
 
@@ -200,17 +200,17 @@ $('.js-games').on('click', '.start-log', function() {
 
 function logTime() {
 	$('#save').on('click', function() {
-		var gameLogged = $('.chosen-game').val();
-		if(gameLogged.length) {
-		logTimeToDb();
-		var saves = 'Your time was saved!';
+		var gameLogged = $('.chosen-game').html();
+	if(!gameLogged.length) {
+		var saves = 'Choose a game!';
 		$('.js-type-game').html(saves);
 		setTimeout(function() {
     		$('.js-type-game').fadeOut(saves).html('').fadeIn();
 		}, 2000);
 	}
-	if(!gameLogged.length) {
-		var saves = 'Choose a game!';
+		else {
+		logTimeToDb();
+		var saves = 'Your time was saved!';
 		$('.js-type-game').html(saves);
 		setTimeout(function() {
     		$('.js-type-game').fadeOut(saves).html('').fadeIn();
