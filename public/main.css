@@ -31,12 +31,35 @@ button:hover {
 
 .title {
 	font-size: 28px;
+	text-align: center;
 	color: white;
+}
+
+.login-box {
+	background-image: url(http://www.volt.com/uploadedImages/Blog/how_to_get_a_job_as_a_video_game_tester_banner.jpg);
+	background-size: cover;
+	background-position: center;
 }
 
 .opening {
 	color: white;
 	font-size: 16px;
+}
+
+.sign-up-btn, .login-btn {
+	background-color: #dd5757;
+	padding: 8px;
+	border-radius: 3px;
+}
+
+.login-btn:hover {
+	background-color: white;
+	color: #dd5757;
+}
+
+.sign-up-btn:hover {
+	background-color: white;
+	color: #dd5757;
 }
 
 .logged-in {
@@ -104,7 +127,7 @@ button:hover {
 }
 
 .game-choice {
-	background-color: black;
+	background-color: #dd5757;
 	color: white;
 	padding: 5px;
 }
@@ -123,6 +146,7 @@ button:hover {
 
 .chosen-game {
 	text-transform: uppercase;
+	color: #dd5757;
 }
 
 .invisible {
@@ -133,10 +157,13 @@ button:hover {
 	display: block;
 }
 
-.your-games, .your-time, .home-page {
+.your-games, .your-time {
 	width: 100%;
-	border: 1px solid white;
 	padding: 3px;
+	background-color: #dd5757;
+	border-radius: 3px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .home-page:hover {
