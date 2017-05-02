@@ -6,6 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="grid.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
@@ -13,9 +15,52 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="title">Video Game Log</div>
-			<p class="opening">This video game log app allows you create a list of your favorite games. On top of that it also lets you save time you have played for each game. When you are done recording your time you can also get a list of all of the games you have played and the accumulated times for each game.</p>
+			<p class="opening"><!--This video game log app allows you create a list of your favorite games. On top of that it also lets you save time you have played for each game. When you are done recording your time you can also get a list of all of the games you have played and the accumulated times for each game.--> Play. Record. Track.</p>
 		</div>
 		</div>
+		<div class="row">
+			<div class="col-3">.</div>
+			<div class="col-3">
+				<button class="login-button">Login</button>
+			</div>
+			<div class="col-3">
+				<button class="signup-button">Sign up</button>
+			</div>
+			<div class="col-3 invisible">.</div>
+		</div>
+	<div class="row">
+	<div class="col-12">
+		<div class="login-box invisible"><!--<button class="sign-up-btn">Sign Up</button>-->
+			<div class="user-login">
+        			<form action="#" class="login-form">
+                		<label for="username">Username</label>
+                 		<input type="text" id="username" placeholder="username" required>
+                 		<label for="password">Password</label>
+                		<input type="password" id="password" placeholder="password" required>
+                		<br>
+                		<button type="submit" class="login-btn">Begin Mission</button>
+               		</form>
+                <div class="js-login-fail"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div clss="row">
+	<div class="col-12">
+		<div class="sign-up-page invisible"><p class="sign-up-info">Sign up to save and keep track of your favorite games!</p>
+			<div class="sign-up-box">
+        		<form action="#" class="sign-up-form">
+                	<label for="new-username">Username</label>
+                	<input type="text" id="new-username" placeholder="username" required>
+                	<label for="new-password">Password</label>
+                	<input type="password" id="new-password" placeholder="password" required>
+                	<br>
+                	<button type="submit" class="sign-up-user-btn">Join the Ranks</button>
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
 		<div class="row">
 			<div class="col-12">
 				<div class="logged-in"></div>
@@ -31,17 +76,11 @@
 				</div>
 			</div>
 		</div>
-</div>	
-<div class="row">
-<div class="col-12">
-<div class="your-times-page invisible"></div>
-</div>
-</div>
-<div class="results-page invisible">
+		<div class="results-page invisible">
 	<div class="results">
 		<div class="row">
 			<form class="js-form">
-				<input type="text" class="js-query" placeholder="Type Your Game!">
+				<input type="text" class="js-query" placeholder="Type Your Game Here!">
 				<button type="submit" class="find-results">Add a Game To Log</button>
 			</form>
 			<div class="js-type-game"></div>
@@ -57,6 +96,17 @@
 		</div>
 	</div>
 </div>
+<div class="row">
+<div class="col-12">
+<div class="your-times-page invisible"></div>
+</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<div class="your-times-page invisible"></div>
+	</div>
+</div>
+</div>	
 <div class="favorite-page invisible">
 	<div class="row">
 		<div class="col-12">
@@ -66,41 +116,9 @@
 		</div>
 	</div>	
 </div>
-<div class="row">
-	<div class="col-12">
-		<div class="login-box"><button class="sign-up-btn">Sign Up</button>
-			<div class="user-login">
-        			<form action="#" class="login-form">
-                		<label for="username">Username</label>
-                 		<input type="text" id="username" placeholder="username" required>
-                 		<label for="password">Password</label>
-                		<input type="password" id="password" placeholder="password" required>
-                		<br>
-                		<button type="submit" class="login-btn">Login</button>
-               		</form>
-                <div class="js-login-fail"></div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="invisible">
 <button class="thing">test</button>
 <div id="each-one"></div>
-</div>
-<div clss="row">
-	<div class="col-12">
-		<div class="sign-up-page invisible"><p class="sign-up-info">Sign up to save and keep track of your favorite games!</p>
-			<div class="sign-up-box">
-        		<form action="#" class="sign-up-form">
-                	<label for="new-username">Username</label>
-                	<input type="text" id="new-username" placeholder="username" required>
-                	<label for="new-password">Password</label>
-                	<input type="password" id="new-password" placeholder="password" required>
-                	<button type="submit" class="sign-up-user-btn">Sign Up</button>
-            	</form>
-            </div>
-        </div>
-    </div>
 </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

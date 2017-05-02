@@ -49,7 +49,7 @@ router.delete('/:id', (req, res) => {
             console.log(`Deleted game with id \"${req.params.id}\"`);
             console.log(game)
             time
-            .deleteOne({gameName: game.gameName})
+            .deleteMany({gameName: game.gameName})
             .then(() => {
               res.status(204).end();
             })

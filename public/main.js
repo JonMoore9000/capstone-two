@@ -59,10 +59,28 @@ function removeGame() {
 	})
 }
 
+function renderLogin() {
+	$('.login-button').click(function(event) {
+		event.preventDefault();
+		$('.login-box').removeClass('invisible');
+		$('.sign-up-page').addClass('invisible');
+	});
+}
+
+function renderSignUp() {
+	$('.signup-button').click(function(event) {
+		event.preventDefault();
+		$('.sign-up-page').removeClass('invisible');
+		$('.login-box').addClass('invisible');
+	});
+}
+
 function getMainPage() {
 	state.invalidLogin = false;
 	$('.sign-up-page').remove();
 	$('.login-box').remove();
+	$('.login-button').remove();
+	$('.signup-button').remove();
 	$('.logged-in').text(`Hello, ${state.loggedIn}`);
 	$('.opening').addClass('invisible');
 	$('.time-top').removeClass('invisible');
@@ -391,4 +409,6 @@ $(function(){
 	timeKeeper();
 	logTime();
 	timePage();
+	renderLogin();
+	renderSignUp();
 });
