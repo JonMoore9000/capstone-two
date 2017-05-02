@@ -25,11 +25,6 @@ label {
 }
 
 .header {
-	/*background-image: url(http://cdn.wallpapersafari.com/79/6/1CbR2h.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-attachment: fixed;*/
 	margin-top: 20px;
 	height: 700px;
 }
@@ -43,13 +38,6 @@ label {
 	text-shadow: 4px 4px 4px #000000;
 	font-weight: bolder;
 }
-
-/*.login-box {
-	background-image: url(http://www.volt.com/uploadedImages/Blog/how_to_get_a_job_as_a_video_game_tester_banner.jpg);
-	background-size: cover;
-	background-position: center;
-	border-radius: 3px;
-}*/
 
 .opening {
 	color: white;
@@ -315,7 +303,7 @@ label {
 
 .sign-up-box {
 	padding: 10px;
-	width: 400px;
+	width: 420px;
 	margin: 0 auto;
 }
 
@@ -338,7 +326,7 @@ label {
 
 .login-form {
 	padding: 10px;
-	width: 400px;
+	width: 420px;
 	margin: 0 auto;
 }
 
