@@ -54,24 +54,24 @@ label {
 	padding-right: 40px;
 	color: white;
 	font-size: 22px;
-	border: 1px solid white;	
+	border: 1px solid white;
 	background-color: black;
 }
 
 .login-button {
-	margin-right: 30px: 
+	margin-right: 30px:
 }
 
 .login-button:hover {
 	background-color: white;
 	color: black;
-	transition: all 0.5s ease 0s;
+	transition: all 0.8s ease 0s;
 }
 
 .signup-button:hover {
 	background-color: white;
 	color: black;
-	transition: all 0.5s ease 0s;
+	transition: all 0.8s ease 0s;
 }
 
 .sign-up-btn, .login-btn {
@@ -241,7 +241,7 @@ label {
 	height: 45px;
 	color: white;
 	font-size: 22px;
-	border: 1px solid white;	
+	border: 1px solid white;
 	background-color: black;
 }
 
